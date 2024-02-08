@@ -1,0 +1,122 @@
+.trigger-bar {
+    position: fixed;
+    width: 30px; /* 触发条的宽度 */
+    /*background-color: rgba(0, 0, 0, 0.5); !* 触发条的背景颜色 *!*/
+    /*cursor: pointer; !* 鼠标悬停时的指针样式 *!*/
+    z-index: 1001; /* 确保触发条在侧边栏之上 */
+    background-color: deepskyblue; /* 临时的，以确保看得见 */
+    /*max-height: 30%;*/
+    /*margin: auto;*/
+    /*top: 50%; !* 从顶部开始到一半高度 *!*/
+    /*transform: translateY(-50%) translateX(-100%); !* 向上移动自身一半的高度来居中，向左移动自身全部宽度来隐藏 *!*/
+    /*left:10px;*/
+}
+
+
+.side-drawer {
+    position: fixed;
+    width: 3000px; /* 或你希望的宽度 */
+    background-color: #333; /* 侧边栏背景颜色 */
+    transition: transform 1s ease; /* 平滑过渡效果 */
+    z-index: 100; /* 确保侧边栏位于其他内容上方 */
+    transform: translateX(-100%) ;
+}
+
+.side-drawer.visible {
+    transform: translateX(0);
+}
+
+.animated-button {
+    z-index: 1001;
+    left: 200px;
+    top:-245px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 25px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 14px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 600;
+    color: greenyellow;
+    box-shadow: 0 0 0 2px greenyellow;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+    position: absolute;
+    width: 24px;
+    fill: greenyellow;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+    right: 16px;
+}
+
+.animated-button .arr-2 {
+    left: -25%;
+}
+
+.animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+    right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+    left: 16px;
+}
+
+.animated-button:hover .text {
+    transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+    fill: #212121;
+}
+
+.animated-button:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px greenyellow;
+}
+
+.animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+}
+.thing {
+    z-index: 1001;
+    left: 1000px;
+}
