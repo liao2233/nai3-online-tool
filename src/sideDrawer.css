@@ -1,36 +1,69 @@
-.trigger-bar {
-    position: fixed;
-    width: 30px; /* 触发条的宽度 */
-    /*background-color: rgba(0, 0, 0, 0.5); !* 触发条的背景颜色 *!*/
-    /*cursor: pointer; !* 鼠标悬停时的指针样式 *!*/
-    z-index: 1001; /* 确保触发条在侧边栏之上 */
-    background-color: deepskyblue; /* 临时的，以确保看得见 */
-    /*max-height: 30%;*/
-    /*margin: auto;*/
-    /*top: 50%; !* 从顶部开始到一半高度 *!*/
-    /*transform: translateY(-50%) translateX(-100%); !* 向上移动自身一半的高度来居中，向左移动自身全部宽度来隐藏 *!*/
-    /*left:10px;*/
-}
-
-
 .side-drawer {
     position: fixed;
-    width: 3000px; /* 或你希望的宽度 */
+    width: 90%; /* 或你希望的宽度 */
     background-color: #333; /* 侧边栏背景颜色 */
     transition: transform 1s ease; /* 平滑过渡效果 */
     z-index: 100; /* 确保侧边栏位于其他内容上方 */
-    transform: translateX(-100%) ;
+    transform: translateX(-100%);
+    top: 5%;
 }
 
 .side-drawer.visible {
     transform: translateX(0);
 }
 
-.animated-button {
-    z-index: 1001;
-    left: 200px;
-    top:-245px;
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container {
+    position: fixed;
+    z-index: 10003;
+    display: block;
+    cursor: pointer;
+    user-select: none;
+}
+
+.container svg {
     position: relative;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    transition: all 0.3s;
+    fill: #666;
+}
+
+.container svg:hover {
+    transform: scale(1.1);
+}
+
+.container input:checked ~ svg {
+    fill: #f5f3c2;
+}
+
+.starButton {
+    position: fixed;
+    background-color: #f5f3c2;
+    color: #13152c;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease;
+}
+
+.animated-button {
+    z-index: 10000;
+    /*left: 100px;*/
+    /*top:-20px;*/
+    position: absolute; /* 或 fixed，取决于需要 */
+    /*transition: top 0.3s, left 0.3s; !* 平滑过渡效果 *!*/
     display: flex;
     align-items: center;
     gap: 4px;
@@ -41,8 +74,8 @@
     background-color: inherit;
     border-radius: 100px;
     font-weight: 600;
-    color: greenyellow;
-    box-shadow: 0 0 0 2px greenyellow;
+    color: white;
+    box-shadow: 0 0 0 2px white;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -51,7 +84,7 @@
 .animated-button svg {
     position: absolute;
     width: 24px;
-    fill: greenyellow;
+    fill: white;
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -71,7 +104,7 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: greenyellow;
+    background-color: white;
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -108,7 +141,7 @@
 
 .animated-button:active {
     scale: 0.95;
-    box-shadow: 0 0 0 4px greenyellow;
+    box-shadow: 0 0 0 4px white;
 }
 
 .animated-button:hover .circle {
@@ -116,7 +149,13 @@
     height: 220px;
     opacity: 1;
 }
+
 .thing {
-    z-index: 1001;
-    left: 1000px;
+    z-index: 1;
+    left: 0;
+}
+
+.container1 {
+    position: fixed;
+    z-index: 1005;
 }

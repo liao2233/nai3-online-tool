@@ -1,68 +1,50 @@
-/*.tab-manager-container {*/
-/*    border: 2px solid #ddd; !* 边框 *!*/
-/*    padding: 2px; !* 内边距 *!*/
-/*    border-radius: 5px; !* 边框圆角 *!*/
-/*    margin: 2px auto; !* 外边距，自动水平居中 *!*/
-/*    max-width: 5000px; !* 最大宽度 *!*/
-/*    position: fixed; !* 或 absolute，取决于需求 *!*/
-/*    top: 0;*/
-/*    left: 450px;*/
-/*    width: 100%; !* 可以调整或设置为固定宽度 *!*/
-/*    z-index: 100; !* 一个高于页面其他元素的值 *!*/
-/*    background-color: #213547; !* 可选，确保内容可见 *!*/
-/*    box-shadow: 0 2px 4px rgba(0,0,0,0.1); !* 可选，为容器添加一些阴影，使其更加突出 *!*/
-/*}*/
+
 .tab-manager-container {
-    border: 2px solid #ddd;
+    border: 2px solid #2b2b2b;
     padding: 2px;
     border-radius: 5px;
     margin: 2px auto;
-    max-width: 5000px; /* 调整为适当的宽度 */
+    max-width: 100%;
     position: fixed;
     top: 0;
-    left: 450px; /* 根据需要调整位置 */
-    /*right: 0; !* 使其居中 *!*/
+    left: 450px;
     z-index: 100;
-    background-color: #213547;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #1e1e1e; /* Dark background for the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/*.tabs-bar {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    padding: 8px;*/
-/*    background: #2c3e50;*/
-/*    border-bottom: 1px solid #34495e;*/
-/*}*/
 .tabs-bar {
     display: flex;
     flex-wrap: wrap;
-    border-radius: 0.5rem;
-    background-color: #2c3e50;
-    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
-    padding: 0.25rem;
-    width: 100%;
     align-items: center;
+    padding: 8px;
+    /*background-color: #2c3e50; !* Adjusted to match theme *!*/
+    background-color: #13152c;
+    color: #13152c;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .tab-content {
-    border-top: 1px solid #eee; /* 内容区域上方的分隔线 */
-    padding-top: 2px; /* 内容区域的顶部内边距 */
-    overflow-x: hidden; /* 隐藏水平滚动条 */
-    overflow-y: auto; /* 当内容超过垂直空间时显示滚动条 */
-    max-height: 500px; /* 或者根据您的布局需要设置的最大高度 */
+    padding-top: 0;
+    overflow-y: auto;
+    max-height: 500px;
+    background-color: #34495e; /* Dark background for content */
+    color: #ffffff; /* Light text for readability */
 }
 
 .tab {
     flex: 1 1 auto;
     text-align: center;
     cursor: pointer;
-    padding: 0.5rem 0;
+    padding: 0.1rem 0;
     color: white;
     transition: all .15s ease-in-out;
     border-radius: 0.5rem;
     background-color: #34495e; /* 默认背景 */
     margin-right: 5px;
+    display: flex; /* Establishes a flex container */
+    justify-content: space-evenly; /* Positions items on the main axis */
+    align-items: center; /* Centers items on the cross axis */
 }
 
 .delete-tab {
@@ -74,6 +56,7 @@
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
+
 .delete-tab:hover {
     opacity: 0.8;
 }
@@ -83,19 +66,22 @@
     color: #333;
     font-weight: 600;
 }
+
 .button {
-    background-color: #3498db;
-    color: white;
+    background-color: #f5f3c2;
+    color: #13152c;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     transition: background-color 0.3s ease;
 }
 
 .button:hover {
     background-color: #2980b9;
 }
+
 .input {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -111,32 +97,39 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgb(255, 95, 95);
+    background-color: #13152c;
     cursor: pointer;
-    border: 2px solid rgb(255, 201, 201);
+    border: 2px solid #34495e;
     transition-duration: 0.3s;
     position: relative;
     overflow: hidden;
+    /*margin-left: 10px;*/
 }
+
 .bin-bottom {
     width: 12px;
     z-index: 2;
 }
+
 .bin-top {
     width: 12px;
     transform-origin: right;
     transition-duration: 0.3s;
     z-index: 2;
 }
+
 .bin-button:hover .bin-top {
     transform: rotate(45deg);
 }
+
 .bin-button:hover {
-    background-color: rgb(255, 0, 0);
+    background-color: red;
 }
+
 .bin-button:active {
     transform: scale(0.9);
 }
+
 .garbage {
     position: absolute;
     width: 10px;
@@ -145,9 +138,11 @@
     opacity: 0;
     transition: all 0.3s;
 }
+
 .bin-button:hover .garbage {
     animation: throw 0.4s linear;
 }
+
 @keyframes throw {
     from {
         transform: translate(-400%, -700%);
@@ -171,7 +166,7 @@
     padding: 1rem;
     font-size: 1rem;
     color: #f5f5f5;
-    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .user-label {
@@ -180,17 +175,106 @@
     color: #e8e8e8;
     pointer-events: none;
     transform: translateY(1rem);
-    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.input1:focus, input1:valid {
+.input1:focus{
     outline: none;
     border: 1.5px solid #1a73e8;
 }
 
-.input1:focus ~ label, input1:valid ~ label {
+.input1:focus ~ label {
     transform: translateY(-50%) scale(0.8);
     background-color: #212121;
     padding: 0 .2em;
     color: #2196f3;
+}
+
+.add-tab-button {
+    background: #f5f3c2;
+    border: none;
+    font-size: 10px; /* 调整大小 */
+    cursor: pointer;
+    /* 其他样式 */
+}
+
+/* 确保 .tabs-bar 是 flex 容器，以便我们可以将加号放在最右边 */
+.tabs-bar {
+    display: flex;
+    justify-content: space-between; /* 使项目两端对齐 */
+    /* 其他样式 */
+}
+
+/* 隐藏和显示输入组件的样式 */
+.input-group {
+    display: none; /* 默认隐藏 */
+}
+
+.input-group.show {
+    display: block; /* 显示 */
+}
+
+.promptAddButton {
+    align-self: flex-end;
+}
+
+.enter-button {
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    gap: 25px;
+    font-size: 0.7em;
+    letter-spacing: 2px;
+    color: white;
+    cursor: pointer;
+    background: #13152c;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid rgb(65, 65, 65);
+    transition-duration: 0.3s;
+}
+
+.arrow {
+    height: 10px;
+}
+
+.enter-button:hover {
+    transition-duration: 0.3s;
+    box-shadow: 0 0 2px rgb(185, 185, 185), 0 0 10px rgb(97, 97, 97);
+}
+
+.enter-button:active {
+    transform: scale(0.95);
+}
+
+.asdasd {
+    display: inline-flex;
+}
+
+.search-results {
+    background: #13152c;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.a12345 {
+    display: flex;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-result-item {
+    /*margin-bottom: 10px;*/
+    display: flex;
+}
+
+.search-result-item h4 {
+    margin: 0;
+}
+
+.search-result-item p {
+    margin: 5px 0;
 }

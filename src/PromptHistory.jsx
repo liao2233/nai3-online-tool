@@ -2,43 +2,35 @@ import {useEffect, useState} from 'react';
 
 function PromptHistory({tab, setTabs}) {
 
-    const [prompts, setPrompts] = useState(() => {
+    const [prompts] = useState(() => {
         const saved = localStorage.getItem(`promptsHistory_${tab.id}`);
         const parsed = saved ? JSON.parse(saved) : [];
-
-        // if (Array.isArray(parsed)) {
-        //     return parsed;
-        // } else {
-        //     console.error('Expected an array from localStorage but got:', parsed);
-        //     return [];
-        // }
-
         return Array.isArray(parsed) ? parsed : [];
     });
 
     const [newPrompt, setNewPrompt] = useState('');
     const [newName, setNewName] = useState('');
-    const [position, setPosition] = useState({x: 20, y: 20});
-    const [isDragging, setIsDragging] = useState(false);
+    // const [position, setPosition] = useState({x: 20, y: 20});
+    // const [isDragging, setIsDragging] = useState(false);
 
-    const handleDragStart = (e) => {
-        setIsDragging(true);
-        setDragStart({x: e.clientX - position.x, y: e.clientY - position.y});
-        e.preventDefault();
-    };
+    // const handleDragStart = (e) => {
+    //     setIsDragging(true);
+    //     setDragStart({x: e.clientX - position.x, y: e.clientY - position.y});
+    //     e.preventDefault();
+    // };
 
     // 处理鼠标移动
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            if (!isDragging) return;
-            setPosition({x: e.clientX - dragStart.x, y: e.clientY - dragStart.y});
-        };
-
-        if (isDragging) {
-            document.addEventListener('mousemove', handleMouseMove);
-        }
-        return () => document.removeEventListener('mousemove', handleMouseMove);
-    }, [isDragging, position]);
+    // useEffect(() => {
+    //     const handleMouseMove = (e) => {
+    //         if (!isDragging) return;
+    //         setPosition({x: e.clientX - dragStart.x, y: e.clientY - dragStart.y});
+    //     };
+    //
+    //     if (isDragging) {
+    //         document.addEventListener('mousemove', handleMouseMove);
+    //     }
+    //     return () => document.removeEventListener('mousemove', handleMouseMove);
+    // }, [isDragging, position]);
 
     // 处理鼠标松开
     useEffect(() => {
@@ -46,10 +38,6 @@ function PromptHistory({tab, setTabs}) {
         document.addEventListener('mouseup', handleMouseUp);
         return () => document.removeEventListener('mouseup', handleMouseUp);
     }, []);
-    // useEffect(() => {
-    //     // Update localStorage when prompts change
-    //     localStorage.setItem('promptsHistory', JSON.stringify(prompts));
-    // }, [prompts]);
 
     // 监听 prompts 变化并更新 localStorage
     useEffect(() => {
@@ -64,7 +52,7 @@ function PromptHistory({tab, setTabs}) {
         setTabs(tabs => tabs.map(t => {
             if (t.id === tab.id) {
                 // 注意这里是在末尾添加新的提示
-                return { ...t, prompts: [...t.prompts, newEntry] };
+                return {...t, prompts: [...t.prompts, newEntry]};
             }
             return t;
         }));
@@ -75,7 +63,7 @@ function PromptHistory({tab, setTabs}) {
     const deletePrompt = (index) => {
         setTabs(tabs => tabs.map(t => {
             if (t.id === tab.id) {
-                return { ...t, prompts: t.prompts.filter((_, i) => i !== index) };
+                return {...t, prompts: t.prompts.filter((_, i) => i !== index)};
             }
             return t;
         }));
@@ -86,20 +74,19 @@ function PromptHistory({tab, setTabs}) {
         // 选择页面上的特定<textarea>元素
         const textarea = document.querySelector('textarea.fnzOi');
         if (textarea) {
-            // 获取<textarea>中现有的内容
             const existingContent = textarea.value;
-            // 将新的prompt内容追加到现有内容后面
-            // 请确保适当地添加分隔符，如换行符'\n'
-            // 更新<textarea>的内容
             textarea.value = existingContent + promptText;
         }
     };
 
+    //用于维护prompt添加组建的显示和隐藏
+    const [showInput, setShowInput] = useState(false);
+
+
     return (
         <div style={{
-            transform: `translate(${position.x}px, ${position.y}px)`,
-            padding: '20px',
-            backgroundColor: '#333',
+            padding: '2px',
+            backgroundColor: '#13152c',
             color: '#FFF',
         }}>
             <div>
@@ -107,93 +94,89 @@ function PromptHistory({tab, setTabs}) {
                     <div key={index}>
                         <span>{item.name}: </span>
                         <span>{item.prompt}</span>
-                        <button onClick={() => addToTextarea(item.prompt)}>use</button>
-                        <button onClick={() => deletePrompt(index)}>Delete</button>
+                        <span className="asdasd">
+                        <button className="enter-button" onClick={() => addToTextarea(item.prompt)}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 40 27"
+                                className="arrow"
+                            >
+                                <line  stroke="white" y2="14" x2="40" y1="14" x1="1"/>
+                                <line
+                                    // stroke-width="2"
+                                    stroke="white"
+                                    y2="1.41537"
+                                    x2="10.4324"
+                                    y1="14.2433"
+                                    x1="1.18869"
+                                />
+                                <line
+                                    // stroke-width="2"
+                                    stroke="white"
+                                    y2="13.6007"
+                                    x2="1.20055"
+                                    y1="26.2411"
+                                    x1="10.699"
+                                />
+                                <line
+                                    stroke="white"
+                                    y2="14.3133"
+                                    x2="1.07325"
+                                    y1="13.6334"
+                                    x1="0.33996"
+                                />
+                                <line strokeWidth="2" stroke="white" y2="13" x2="39" y1="8" x1="39"/>
+                            </svg>
+                        </button>
+                        <button className="bin-button" onClick={() => deletePrompt(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 39 7"
+                                 className="bin-top">
+                                <line strokeWidth="4" stroke="white" y2="5" x2="39" y1="5"/>
+                                <line strokeWidth="3" stroke="white" y2="1.5" x2="26.0357" y1="1.5" x1="12"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 33 39"
+                                 className="bin-bottom">
+                                <mask id="path-1-inside-1_8_19" fill="white">
+                                    <path
+                                        d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"/>
+                                </mask>
+                                <path mask="url(#path-1-inside-1_8_19)" fill="white"
+                                      d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"/>
+                                <path strokeWidth="4" stroke="white" d="M12 6L12 29"/>
+                                <path strokeWidth="4" stroke="white" d="M21 6V29"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 89 80"
+                                 className="garbage">
+                                <path fill="white"
+                                      d="M20.5 10.5L...L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z"/>
+                            </svg>
+                        </button>
+                        </span>
                     </div>
                 ))}
             </div>
-            <input value={newName}
-                   onChange={(e) => setNewName(e.target.value)}
-                    required="" type="text" name="text" autoComplete="off"
-                   className="input1"/>
-            <label className="user-label">Prompt</label>
-            <input value={newPrompt}
-                   onChange={(e) => setNewPrompt(e.target.value)}
-                    required="" type="text" name="text" autoComplete="off"
-                   className="input1"/>
-            <label className="user-label">Content</label>
-
-            <button onClick={addPrompt}>Add Prompt</button>
-            <div style={{marginTop: '20px'}}>
-                {prompts.map((item, index) => (
-                    <div key={index} style={{marginBottom: '10px'}}>
-                        <span style={{marginRight: '10px'}}>{item.name}:</span>
-                        <span style={{marginRight: '10px'}}>{item.prompt}</span>
-
-                        <button onClick={() => deletePrompt(index)}>Delete</button>
-                    </div>
-                ))}
-            </div>
+            <button className="promptAddButton" onClick={() => setShowInput(!showInput)}>+</button>
+            {showInput && (
+                <div className='input-group1'>
+                    <input
+                        value={newName}
+                        onChange={(e) => setNewName(e.target.value)}
+                        required="" type="text" name="text" autoComplete="off"
+                        className="input"
+                    />
+                    <label className="user-label">Prompt</label>
+                    <input
+                        value={newPrompt}
+                        onChange={(e) => setNewPrompt(e.target.value)}
+                        required="" type="text" name="text" autoComplete="off"
+                        className="input"
+                    />
+                    <label className="user-label">Content</label>
+                    <button onClick={addPrompt}>Add Prompt</button>
+                </div>
+            )}
         </div>
-
-
-        // <div className="space-y-4">
-        //     {tab.prompts.map((item, index) => (
-        //         <div
-        //             key={index}
-        //             className="w-72 bg-white rounded-b-lg border-t-8 border-green-400 px-4 py-5 flex flex-col justify-around shadow-md"
-    //         >
-    //             <p className="text-lg font-bold font-sans">{item.name}</p>
-    //             <div className="py-3">
-    //                 <p className="text-gray-400 text-sm">
-    //                     {item.prompt}
-    //                 </p>
-    //             </div>
-    //             <div className="flex justify-between items-center">
-    //                 <button
-    //                     onClick={() => addToTextarea(item.prompt)}
-    //                     className="bg-slate-200 px-2 rounded-xl hover:bg-slate-400 transition-colors ease-in-out"
-    //                 >
-    //                     Use
-    //                 </button>
-    //                 <button
-    //                     onClick={() => deletePrompt(index)}
-    //                     className="bin-button"
-    //                 >
-    //                     {/* SVG bin icon */}
-    //                     <svg
-    //                         // ... SVG path for bin icon
-    //                         className="garbage"
-    //                     />
-    //                 </button>
-    //             </div>
-    //         </div>
-    //     ))}
-    //     {/* ...其他组件内容 */}
-    //          <input
-    //             style={{marginRight: '10px'}}
-    //             value={newName}
-    //             onChange={(e) => setNewName(e.target.value)}
-    //             placeholder="Enter prompt name"
-    //         />
-    //         <input
-    //             style={{marginRight: '10px'}}
-    //             value={newPrompt}
-    //             onChange={(e) => setNewPrompt(e.target.value)}
-    //             placeholder="Enter prompt text"
-    //         />
-    //         <button onClick={addPrompt}>Add Prompt</button>
-    //         <div style={{marginTop: '20px'}}>
-    //             {prompts.map((item, index) => (
-    //                 <div key={index} style={{marginBottom: '10px'}}>
-    //                     <span style={{marginRight: '10px'}}>{item.name}:</span>
-    //                     <span style={{marginRight: '10px'}}>{item.prompt}</span>
-    //
-    //                     <button onClick={() => deletePrompt(index)}>Delete</button>
-    //                 </div>
-    //             ))}
-    //         </div>
-    // </div>
     );
 }
 
