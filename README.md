@@ -20,7 +20,7 @@ To use nai3-online-tool, you first need to install the Tampermonkey browser exte
    - Edge users can get it at [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
 
 2. Install the nai3-online-tool user script:
-   - haven't released on Greasyfork yet.
+   - [Greasyfork](https://greasyfork.org/en/scripts/487080-novelai-online-prompts-tool?locale_override=1)
    
 
 ## Usage
