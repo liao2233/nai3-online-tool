@@ -27,26 +27,39 @@ function SideDrawer({triggerSelector}) {
         setActiveTabId(newActiveTabId);
     };
 
+
+    useEffect(() => {
+        // 监听tabs变化，当tabs变化时，更新localStorage中的数据
+        localStorage.setItem('tabs', JSON.stringify(tabs));
+    }, [tabs]);
+
     // 收藏
     const addPromptToFavorites = () => {
         const textArea = document.querySelector('textarea.sc-5db1afd3-45.fnzOi');
         if (textArea) {
-            console.log("收藏了")
             const promptText = textArea.value;
             const favoritesTab = tabs.find(tab => tab.id === 'favorites');
-            const isDuplicate = favoritesTab.prompts.some(prompt => prompt.prompt === promptText);
-            if (!isDuplicate) {
-                const newName = `Prompt ${favoritesTab.prompts.length + 1}`;
-                const newPrompt = {name: newName, prompt: promptText};
-                setTabs(tabs => tabs.map(tab => {
-                    if (tab.id === 'favorites') {
-                        return {...tab, prompts: [...tab.prompts, newPrompt]};
-                    }
-                    return tab;
-                }));
+            if (favoritesTab && Array.isArray(favoritesTab.prompts)) {
+                const isDuplicate = favoritesTab.prompts.some(prompt => prompt?.prompt === promptText);
+                if (!isDuplicate) {
+                    const newName = `Prompt ${favoritesTab.prompts.length + 1}`;
+                    const newPrompt = {name: newName, prompt: promptText};
+                    const updatedTabs = tabs.map(tab => {
+                        if (tab.id === 'favorites') {
+                            const updatedPrompts = [...tab.prompts, newPrompt];
+                            return {...tab, prompts: updatedPrompts};
+                        }
+                        return tab;
+                    });
+                    setTabs(updatedTabs);
+                    console.log(updatedTabs);
+                    // 更新localStorage，确保收藏的数据也被持久化
+                    localStorage.setItem('tabs', JSON.stringify(updatedTabs));
+                }
             }
         }
     };
+
 
     // 添加到当前选中tab
     const addPromptToActiveTab = () => {
@@ -56,8 +69,8 @@ function SideDrawer({triggerSelector}) {
             console.log("标记")
             // 假设你有一个状态来跟踪当前活跃的Tab的ID
             const activeTab = tabs.find(tab => tab.id === activeTabId);
-            if (activeTab) {
-                const isDuplicate = activeTab.prompts.some(prompt => prompt.prompt === promptText);
+            if (activeTab && Array.isArray(activeTab.prompts)) {
+                const isDuplicate = activeTab.prompts.some(prompt => prompt?.prompt === promptText);
                 if (!isDuplicate) {
                     const newName = `Prompt ${activeTab.prompts.length + 1}`;
                     const newPrompt = {name: newName, prompt: promptText};
@@ -125,7 +138,6 @@ function SideDrawer({triggerSelector}) {
         const observer = new MutationObserver(mutationsList => {
             for (const mutation of mutationsList) {
                 if (mutation.type === 'childList') {
-                    console.log("开始找位置")
                     // 设置触发条的位置
                     setTriggerPosition();
                     // 获取特定组件的位置，并设置按钮的位置
@@ -178,7 +190,7 @@ function SideDrawer({triggerSelector}) {
 
 
     // 在组件内部
-    const [,setOffset] = useState(0);
+    const [, setOffset] = useState(0);
 
     useEffect(() => {
         if (isVisible) {
@@ -188,16 +200,30 @@ function SideDrawer({triggerSelector}) {
     }, [isVisible]);
 
     const addToHistory = (promptText) => {
+        if (typeof promptText !== 'string' || !promptText.trim()) {
+            console.warn('Invalid promptText provided to addToHistory');
+            return; // 提早返回，不执行后续操作
+        }
         setTabs(tabs => tabs.map(tab => {
-            if (tab.id === 'history') { // 假设'history'是该标签页的id
-                return {
-                    ...tab,
-                    prompts: [...tab.prompts, {name: `Prompt ${tab.prompts.length + 1}`, prompt: promptText}]
-                };
+            // 检查是否是“历史”标签页
+            if (tab.id === 'history') {
+                // 检查内容是否已存在
+                const isDuplicate = tab.prompts.some(prompt => prompt?.prompt === promptText);
+                if (!isDuplicate) {
+                    // 如果不是重复的，添加新的提示
+                    return {
+                        ...tab,
+                        prompts: [...tab.prompts, {name: `Prompt ${tab.prompts.length + 1}`, prompt: promptText}]
+                    };
+                } else {
+                    // 如果是重复的，直接返回当前tab，不做任何改变
+                    return tab;
+                }
             }
             return tab;
         }));
     };
+
 
     const handleButtonClick = () => {
         const inputText = document.querySelector('textarea').value; // 假设你的输入框是一个<textarea>

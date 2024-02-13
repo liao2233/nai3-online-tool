@@ -11,9 +11,10 @@ export default defineConfig({
       userscript: {
         icon: 'https://vitejs.dev/logo.svg',
         namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.google.com/'],
+        match: ['https://novelai.net/image'],
       },
       build: {
+        minify:false,
         externalGlobals: {
           react: cdn.jsdelivr('React', 'umd/react.production.min.js'),
           'react-dom': cdn.jsdelivr(

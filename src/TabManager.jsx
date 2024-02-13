@@ -12,7 +12,7 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
     const [draggingTabId, setDraggingTabId] = useState(null);
     const [, setPosition] = useState({x: 0, y: 0}); // 初始位置
     const [dragging, setDragging] = useState(false); // 是否正在拖动
-    const [startPos, ] = useState({x: 0, y: 0}); // 开始拖动的位置
+    const [startPos,] = useState({x: 0, y: 0}); // 开始拖动的位置
 
     // 每当tabs或activeTabId变化时，更新localStorage
     useEffect(() => {
@@ -211,6 +211,39 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
         return `${text.substring(0, maxLength)}...`;
     }
 
+    // 函数用于将内容添加到<textarea>
+    const addToTextarea = (promptText) => {
+        // 选择页面上的特定<textarea>元素
+        const textarea = document.querySelector('textarea.fnzOi');
+        if (textarea) {
+            const existingContent = textarea.value;
+            textarea.value = existingContent + promptText;
+        }
+    };
+
+    // 函数用于将内容添加到<textarea>
+    const replaceTextArea = (promptText) => {
+        // 选择页面上的特定<textarea>元素
+        const textarea = document.querySelector('textarea.fnzOi');
+        if (textarea) {
+            const existingContent = textarea.value;
+            textarea.value = promptText;
+        }
+    };
+
+    const handlePromptsUpdate = (updatedPrompts) => {
+        // Update the tabs state with the updated prompts for the active tab
+        const updatedTabs = tabs.map(tab => {
+            if (tab.id === activeTabId) {
+                return {...tab, prompts: updatedPrompts};
+            }
+            return tab;
+        });
+        console.log("修改");
+        setTabs(updatedTabs); // Update the state
+        localStorage.setItem('tabs', JSON.stringify(updatedTabs)); // Persist the changes
+    };
+
 
     return (
         <div className="tab-manager-container">
@@ -222,7 +255,15 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
                         <div key={key} className="search-result-item">
                             <h4>{result.name}</h4>
                             <p>{isExpanded ? result.prompt : truncateText(result.prompt, 100)}</p>
-                            <button onClick={() => toggleExpandResult(key)}>{isExpanded ? 'Less' : 'More'}</button>
+                            <button className="more-button"
+                                    onClick={() => toggleExpandResult(key)}>{isExpanded ? 'less' : 'more'}</button>
+                            <button className="enter-button" onClick={() => addToTextarea(result.prompt)}>
+                                +
+                            </button>
+                            <button className="enter-button" onClick={() => replaceTextArea(result.prompt)}>
+                                use
+                            </button>
+
                         </div>
                     );
                 })}
@@ -237,7 +278,6 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
 
             </div>
             <div className="tabs-bar">
-
                 {tabs.map(tab => (
                     <div key={tab.id} className={`tab ${tab.id === activeTabId ? 'active' : ''}`}
                          draggable={!tab.isFixed}
@@ -297,7 +337,7 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
             </div>
             <div className="tab-content">
                 {tabs.filter(tab => tab.id === activeTabId).map(tab => (
-                    <PromptHistory key={tab.id} tab={tab} setTabs={setTabs}/>
+                    <PromptHistory key={tab.id} tab={tab} setTabs={setTabs} onPromptsUpdate={handlePromptsUpdate}/>
                 ))}
             </div>
         </div>

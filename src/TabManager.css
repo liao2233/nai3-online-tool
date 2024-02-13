@@ -263,7 +263,7 @@
 }
 
 .search-container {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .search-result-item {
@@ -277,4 +277,10 @@
 
 .search-result-item p {
     margin: 5px 0;
+}
+
+.more-button{
+    padding: inherit;
+    background: inherit;
+    border: 1px solid rgb(65, 65, 65);
 }

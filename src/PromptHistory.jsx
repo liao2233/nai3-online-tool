@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 
-function PromptHistory({tab, setTabs}) {
+function PromptHistory({tab, setTabs, onPromptsUpdate}) {
 
-    const [prompts] = useState(() => {
+    const [prompts, setPrompts] = useState(() => {
         const saved = localStorage.getItem(`promptsHistory_${tab.id}`);
         const parsed = saved ? JSON.parse(saved) : [];
         return Array.isArray(parsed) ? parsed : [];
@@ -10,34 +10,6 @@ function PromptHistory({tab, setTabs}) {
 
     const [newPrompt, setNewPrompt] = useState('');
     const [newName, setNewName] = useState('');
-    // const [position, setPosition] = useState({x: 20, y: 20});
-    // const [isDragging, setIsDragging] = useState(false);
-
-    // const handleDragStart = (e) => {
-    //     setIsDragging(true);
-    //     setDragStart({x: e.clientX - position.x, y: e.clientY - position.y});
-    //     e.preventDefault();
-    // };
-
-    // 处理鼠标移动
-    // useEffect(() => {
-    //     const handleMouseMove = (e) => {
-    //         if (!isDragging) return;
-    //         setPosition({x: e.clientX - dragStart.x, y: e.clientY - dragStart.y});
-    //     };
-    //
-    //     if (isDragging) {
-    //         document.addEventListener('mousemove', handleMouseMove);
-    //     }
-    //     return () => document.removeEventListener('mousemove', handleMouseMove);
-    // }, [isDragging, position]);
-
-    // 处理鼠标松开
-    useEffect(() => {
-        const handleMouseUp = () => setIsDragging(false);
-        document.addEventListener('mouseup', handleMouseUp);
-        return () => document.removeEventListener('mouseup', handleMouseUp);
-    }, []);
 
     // 监听 prompts 变化并更新 localStorage
     useEffect(() => {
@@ -48,26 +20,52 @@ function PromptHistory({tab, setTabs}) {
     const addPrompt = () => {
         if (!newPrompt.trim()) return;
         const newEntry = {name: newName.trim() || `Prompt ${prompts.length + 1}`, prompt: newPrompt};
-        // 这里我们直接更新父组件的状态
-        setTabs(tabs => tabs.map(t => {
-            if (t.id === tab.id) {
-                // 注意这里是在末尾添加新的提示
-                return {...t, prompts: [...t.prompts, newEntry]};
-            }
-            return t;
-        }));
+        setTabs(tabs => {
+            const updatedTabs = tabs.map(t => {
+                if (t.id === tab.id) {
+                    // 注意这里是在末尾添加新的提示
+                    const updatedPrompts = [...t.prompts, newEntry];
+                    // // 在当前tab找到时，也更新本组件的prompts状态
+                    // if (tab.id === t.id) {
+                    //     setPrompts(updatedPrompts);
+                    // }
+                    return {...t, prompts: updatedPrompts};
+                }
+                return t;
+            });
+            // 正确地更新localStorage
+            localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
+            return updatedTabs;
+        });
         setNewPrompt('');
         setNewName('');
     };
+
+
+    useEffect(() => {
+        console.log("Prompts have been updated:", prompts);
+    }, [prompts]);
+
+
     // 删除当前标签页的一个提示
     const deletePrompt = (index) => {
-        setTabs(tabs => tabs.map(t => {
-            if (t.id === tab.id) {
-                return {...t, prompts: t.prompts.filter((_, i) => i !== index)};
-            }
-            return t;
-        }));
+        setTabs(tabs => {
+            const updatedTabs = tabs.map(t => {
+                if (t.id === tab.id) {
+                    const updatedPrompts = t.prompts.filter((_, i) => i !== index);
+                    // 在map函数内部，只是构建更新后的tabs数组
+                    return {...t, prompts: updatedPrompts};
+                }
+                return t;
+            });
+
+            // 更新localStorage以反映删除操作，应该在map函数外部执行
+            localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
+
+            return updatedTabs;
+        });
     };
+
 
     // 函数用于将内容添加到<textarea>
     const addToTextarea = (promptText) => {
@@ -78,9 +76,57 @@ function PromptHistory({tab, setTabs}) {
             textarea.value = existingContent + promptText;
         }
     };
+    // 函数用于将内容添加到<textarea>
+    const replaceTextArea = (promptText) => {
+        // 选择页面上的特定<textarea>元素
+        const textarea = document.querySelector('textarea.fnzOi');
+        if (textarea) {
+            const existingContent = textarea.value;
+            textarea.value = promptText;
+        }
+    };
 
     //用于维护prompt添加组建的显示和隐藏
     const [showInput, setShowInput] = useState(false);
+
+    const updatePromptContent = (e, index) => {
+        const updatedPromptText = e.target.innerText;
+        // console.log("??");
+        // 直接使用最上层的tabs状态来进行更新
+        setTabs(tabs => {
+            return tabs.map(tab => {
+                if (tab.id === tab.id) { // 确保更新的是当前操作的tab
+                    // console.log(tab);
+                    const updatedPrompts = [...tab.prompts];
+                    // console.log("看这里");
+                    // console.log(tab);
+                    updatedPrompts[index] = {...updatedPrompts[index], prompt: updatedPromptText};
+                    // console.log(tab);
+                    return {...tab, prompts: updatedPrompts};
+                }
+                return tab;
+            });
+        });
+    };
+
+
+    const updatePromptName = (e, index) => {
+        const updatedName = e.target.innerText;
+
+        // 直接使用最上层的tabs状态来进行更新
+        setTabs(tabs => {
+            return tabs.map(tab => {
+                if (tab.id === tab.id) { // 确保更新的是当前操作的tab
+                    const updatedPrompts = [...tab.prompts];
+                    updatedPrompts[index] = {...updatedPrompts[index], name: updatedName};
+                    return {...tab, prompts: updatedPrompts};
+                }
+                return tab;
+            });
+        });
+
+        // 不需要直接操作localStorage，应有一个集中的地方负责同步tabs到localStorage
+    };
 
 
     return (
@@ -92,42 +138,46 @@ function PromptHistory({tab, setTabs}) {
             <div>
                 {tab.prompts.map((item, index) => (
                     <div key={index}>
-                        <span>{item.name}: </span>
-                        <span>{item.prompt}</span>
+                        {item && item.name && (
+                            <div
+                                contentEditable="true"
+                                suppressContentEditableWarning={true}
+                                onBlur={(e) => updatePromptName(e, index)}
+                                dangerouslySetInnerHTML={{__html: item.name}}
+                                style={{
+                                    border: '1px solid #ccc',
+                                    minHeight: '20px',
+                                    cursor: 'text',
+                                    padding: '5px',
+                                    margin: '5px 0'
+                                }}
+                            />
+                        )}
+                        {item && item.prompt && (
+                            <div>
+                                <div
+                                    contentEditable="true"
+                                    suppressContentEditableWarning={true}
+                                    onBlur={(e) => updatePromptContent(e, index)}
+                                    dangerouslySetInnerHTML={{__html: item.prompt}}
+                                    style={{
+                                        border: '1px solid #ccc',
+                                        minHeight: '20px',
+                                        cursor: 'text',
+                                        padding: '5px'
+                                    }}
+                                />
+                            </div>
+                        )}
+
+                        {/*<span>{item.prompt}</span>*/}
                         <span className="asdasd">
                         <button className="enter-button" onClick={() => addToTextarea(item.prompt)}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 40 27"
-                                className="arrow"
-                            >
-                                <line  stroke="white" y2="14" x2="40" y1="14" x1="1"/>
-                                <line
-                                    // stroke-width="2"
-                                    stroke="white"
-                                    y2="1.41537"
-                                    x2="10.4324"
-                                    y1="14.2433"
-                                    x1="1.18869"
-                                />
-                                <line
-                                    // stroke-width="2"
-                                    stroke="white"
-                                    y2="13.6007"
-                                    x2="1.20055"
-                                    y1="26.2411"
-                                    x1="10.699"
-                                />
-                                <line
-                                    stroke="white"
-                                    y2="14.3133"
-                                    x2="1.07325"
-                                    y1="13.6334"
-                                    x1="0.33996"
-                                />
-                                <line strokeWidth="2" stroke="white" y2="13" x2="39" y1="8" x1="39"/>
-                            </svg>
+                            +
+                        </button>
+                        <button className="enter-button"
+                                onClick={() => replaceTextArea(item.prompt)}>
+                            use
                         </button>
                         <button className="bin-button" onClick={() => deletePrompt(index)}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 39 7"
@@ -145,11 +195,6 @@ function PromptHistory({tab, setTabs}) {
                                       d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"/>
                                 <path strokeWidth="4" stroke="white" d="M12 6L12 29"/>
                                 <path strokeWidth="4" stroke="white" d="M21 6V29"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 89 80"
-                                 className="garbage">
-                                <path fill="white"
-                                      d="M20.5 10.5L...L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z"/>
                             </svg>
                         </button>
                         </span>

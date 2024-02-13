@@ -1,6 +1,6 @@
 {
-  "name": "1111",
-  "private": true,
+  "name": "NovelAi online Prompts Tool",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
