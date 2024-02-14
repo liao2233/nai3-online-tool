@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 
-function PromptHistory({tab, setTabs, onPromptsUpdate}) {
+function PromptHistory({key, activeTab, setTabs, onPromptsUpdate}) {
 
     const [prompts, setPrompts] = useState(() => {
-        const saved = localStorage.getItem(`promptsHistory_${tab.id}`);
+        const saved = localStorage.getItem(`promptsHistory_${activeTab.id}`);
         const parsed = saved ? JSON.parse(saved) : [];
         return Array.isArray(parsed) ? parsed : [];
     });
@@ -12,9 +12,9 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
     const [newName, setNewName] = useState('');
 
     // 监听 prompts 变化并更新 localStorage
-    useEffect(() => {
-        localStorage.setItem(`promptsHistory_${tab.id}`, JSON.stringify(prompts));
-    }, [prompts, tab.id]);
+    // useEffect(() => {
+    //     localStorage.setItem(`promptsHistory_${tab.id}`, JSON.stringify(prompts));
+    // }, [prompts, tab.id]);
 
     // 添加提示到当前标签页
     const addPrompt = () => {
@@ -22,7 +22,7 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
         const newEntry = {name: newName.trim() || `Prompt ${prompts.length + 1}`, prompt: newPrompt};
         setTabs(tabs => {
             const updatedTabs = tabs.map(t => {
-                if (t.id === tab.id) {
+                if (t.id === activeTab.id) {
                     // 注意这里是在末尾添加新的提示
                     const updatedPrompts = [...t.prompts, newEntry];
                     // // 在当前tab找到时，也更新本组件的prompts状态
@@ -34,7 +34,7 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
                 return t;
             });
             // 正确地更新localStorage
-            localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
+            // localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
             return updatedTabs;
         });
         setNewPrompt('');
@@ -50,19 +50,17 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
     // 删除当前标签页的一个提示
     const deletePrompt = (index) => {
         setTabs(tabs => {
-            const updatedTabs = tabs.map(t => {
-                if (t.id === tab.id) {
+            // 更新localStorage以反映删除操作，应该在map函数外部执行
+            // localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
+
+            return tabs.map(t => {
+                if (t.id === activeTab.id) {
                     const updatedPrompts = t.prompts.filter((_, i) => i !== index);
                     // 在map函数内部，只是构建更新后的tabs数组
                     return {...t, prompts: updatedPrompts};
                 }
                 return t;
             });
-
-            // 更新localStorage以反映删除操作，应该在map函数外部执行
-            localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
-
-            return updatedTabs;
         });
     };
 
@@ -95,7 +93,11 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
         // 直接使用最上层的tabs状态来进行更新
         setTabs(tabs => {
             return tabs.map(tab => {
-                if (tab.id === tab.id) { // 确保更新的是当前操作的tab
+                console.log("现在扫到tab：");
+                console.log(tab.id);
+                console.log("现在的id是");
+                console.log(key);
+                if (tab.id === activeTab.id) { // 确保更新的是当前操作的tab
                     // console.log(tab);
                     const updatedPrompts = [...tab.prompts];
                     // console.log("看这里");
@@ -116,9 +118,14 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
         // 直接使用最上层的tabs状态来进行更新
         setTabs(tabs => {
             return tabs.map(tab => {
-                if (tab.id === tab.id) { // 确保更新的是当前操作的tab
+                console.log("现在扫到tab：");
+                console.log(tab.id);
+                console.log("现在的id是");
+                console.log(key);
+                if (tab.id === activeTab.id) { // 确保更新的是当前操作的tab
                     const updatedPrompts = [...tab.prompts];
                     updatedPrompts[index] = {...updatedPrompts[index], name: updatedName};
+                    console.log(updatedPrompts);
                     return {...tab, prompts: updatedPrompts};
                 }
                 return tab;
@@ -136,7 +143,7 @@ function PromptHistory({tab, setTabs, onPromptsUpdate}) {
             color: '#FFF',
         }}>
             <div>
-                {tab.prompts.map((item, index) => (
+                {activeTab.prompts.map((item, index) => (
                     <div key={index}>
                         {item && item.name && (
                             <div

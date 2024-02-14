@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       NovelAi online Prompts Tool
 // @namespace  npm/vite-plugin-monkey
-// @version    0.5.0
+// @version    0.9.0
 // @author     ChatGPT4
 // @icon       https://vitejs.dev/logo.svg
 // @match      https://novelai.net/image
@@ -12,7 +12,7 @@
 // @license    MIT
 // ==/UserScript==
 
-(o=>{if(typeof GM_addStyle=="function"){GM_addStyle(o);return}const t=document.createElement("style");t.textContent=o,document.head.append(t)})(" #root{max-width:1280px;margin:0 auto;padding:2rem;text-align:center}.logo{height:6em;padding:1.5em;will-change:filter}.logo:hover{filter:drop-shadow(0 0 2em #646cffaa)}.logo.react:hover{filter:drop-shadow(0 0 2em #61dafbaa)}@keyframes logo-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@media (prefers-reduced-motion: no-preference){a:nth-of-type(2) .logo{animation:logo-spin infinite 20s linear}}.card{padding:2em}.read-the-docs{color:#888}.side-drawer{position:fixed;width:90%;background-color:#333;transition:transform 1s ease;z-index:100;transform:translate(-100%);top:5%}.side-drawer.visible{transform:translate(0)}.container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.container{position:fixed;z-index:10003;display:block;cursor:pointer;-webkit-user-select:none;user-select:none}.container svg{position:relative;top:0;left:0;height:50px;width:50px;transition:all .3s;fill:#666}.container svg:hover{transform:scale(1.1)}.container input:checked~svg{fill:#f5f3c2}.starButton{position:fixed;background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.animated-button{z-index:10000;position:absolute;display:flex;align-items:center;gap:4px;padding:6px 25px;border:4px solid;border-color:transparent;font-size:14px;background-color:inherit;border-radius:100px;font-weight:600;color:#fff;box-shadow:0 0 0 2px #fff;cursor:pointer;overflow:hidden;transition:all .6s cubic-bezier(.23,1,.32,1)}.animated-button svg{position:absolute;width:24px;fill:#fff;z-index:9;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .arr-1{right:16px}.animated-button .arr-2{left:-25%}.animated-button .circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background-color:#fff;border-radius:50%;opacity:0;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .text{position:relative;z-index:1;transform:translate(-12px);transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button:hover{box-shadow:0 0 0 12px transparent;color:#212121;border-radius:12px}.animated-button:hover .arr-1{right:-25%}.animated-button:hover .arr-2{left:16px}.animated-button:hover .text{transform:translate(12px)}.animated-button:hover svg{fill:#212121}.animated-button:active{scale:.95;box-shadow:0 0 0 4px #fff}.animated-button:hover .circle{width:220px;height:220px;opacity:1}.thing{z-index:1;left:0}.container1{position:fixed;z-index:1005}.tab-manager-container{border:2px solid #2b2b2b;padding:2px;border-radius:5px;margin:2px auto;max-width:100%;position:fixed;top:0;left:450px;z-index:100;background-color:#1e1e1e;box-shadow:0 2px 4px #0000001a}.tabs-bar{display:flex;flex-wrap:wrap;align-items:center;padding:8px;background-color:#13152c;color:#13152c;box-shadow:0 0 10px #0003}.tab-content{padding-top:0;overflow-y:auto;max-height:500px;background-color:#34495e;color:#fff}.tab{flex:1 1 auto;text-align:center;cursor:pointer;padding:.1rem 0;color:#fff;transition:all .15s ease-in-out;border-radius:.5rem;background-color:#34495e;margin-right:5px;display:flex;justify-content:space-evenly;align-items:center}.delete-tab{background-color:#e74c3c;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;transition:opacity .3s ease}.delete-tab:hover{opacity:.8}.tab:hover,.tab.active{background-color:#fff;color:#333;font-weight:600}.button{background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.button:hover{background-color:#2980b9}.input{border:1px solid #ccc;border-radius:4px;padding:8px;width:100%}.bin-button{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background-color:#13152c;cursor:pointer;border:2px solid #34495e;transition-duration:.3s;position:relative;overflow:hidden}.bin-bottom{width:12px;z-index:2}.bin-top{width:12px;transform-origin:right;transition-duration:.3s;z-index:2}.bin-button:hover .bin-top{transform:rotate(45deg)}.bin-button:hover{background-color:red}.bin-button:active{transform:scale(.9)}.garbage{position:absolute;width:10px;height:auto;z-index:1;opacity:0;transition:all .3s}.bin-button:hover .garbage{animation:throw .4s linear}@keyframes throw{0%{transform:translate(-400%,-700%);opacity:0}to{transform:translate(0);opacity:1}}.input-group{position:relative}.input1{border:solid 1.5px #9e9e9e;border-radius:1rem;background:none;padding:1rem;font-size:1rem;color:#f5f5f5;transition:border .15s cubic-bezier(.4,0,.2,1)}.user-label{position:absolute;left:15px;color:#e8e8e8;pointer-events:none;transform:translateY(1rem);transition:.15s cubic-bezier(.4,0,.2,1)}.input1:focus{outline:none;border:1.5px solid #1a73e8}.input1:focus~label{transform:translateY(-50%) scale(.8);background-color:#212121;padding:0 .2em;color:#2196f3}.add-tab-button{background:#f5f3c2;border:none;font-size:10px;cursor:pointer}.tabs-bar{display:flex;justify-content:space-between}.input-group{display:none}.input-group.show{display:block}.promptAddButton{align-self:flex-end}.enter-button{align-items:center;justify-content:center;padding:4px 12px;gap:25px;font-size:.7em;letter-spacing:2px;color:#fff;cursor:pointer;background:#13152c;position:relative;border-radius:8px;border:1px solid rgb(65,65,65);transition-duration:.3s}.arrow{height:10px}.enter-button:hover{transition-duration:.3s;box-shadow:0 0 2px #b9b9b9,0 0 10px #616161}.enter-button:active{transform:scale(.95)}.asdasd{display:inline-flex}.search-results{background:#13152c;overflow-y:auto;max-height:400px}.a12345,.search-result-item{display:flex}.search-result-item h4{margin:0}.search-result-item p{margin:5px 0}.more-button{padding:inherit;background:inherit;border:1px solid rgb(65,65,65)}:root{font-family:Inter,Avenir,Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:400;color:#ffffffde;background-color:#242424;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%}a{font-weight:500;color:#646cff;text-decoration:inherit}a:hover{color:#535bf2}body{margin:0;display:flex;place-items:center;min-width:320px;min-height:100vh}h1{font-size:3.2em;line-height:1.1}button{border-radius:8px;border:1px solid transparent;padding:.6em 1.2em;font-size:1em;font-weight:500;font-family:inherit;background-color:#1a1a1a;cursor:pointer;transition:border-color .25s}button:hover{border-color:#646cff}button:focus,button:focus-visible{outline:4px auto -webkit-focus-ring-color}@media (prefers-color-scheme: light){:root{color:#213547;background-color:#fff}a:hover{color:#747bff}button{background-color:#f9f9f9}} ");
+(o=>{if(typeof GM_addStyle=="function"){GM_addStyle(o);return}const t=document.createElement("style");t.textContent=o,document.head.append(t)})(" #root{max-width:1280px;margin:0 auto;padding:2rem;text-align:center}.logo{height:6em;padding:1.5em;will-change:filter}.logo:hover{filter:drop-shadow(0 0 2em #646cffaa)}.logo.react:hover{filter:drop-shadow(0 0 2em #61dafbaa)}@keyframes logo-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@media (prefers-reduced-motion: no-preference){a:nth-of-type(2) .logo{animation:logo-spin infinite 20s linear}}.card{padding:2em}.read-the-docs{color:#888}.side-drawer{position:fixed;width:90%;background-color:#333;transition:transform 1s ease;z-index:100;transform:translate(-100%);top:5%}.side-drawer.visible{transform:translate(0)}.container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.container{position:fixed;z-index:10003;display:block;cursor:pointer;-webkit-user-select:none;user-select:none}.container svg{position:relative;top:0;left:0;height:50px;width:50px;transition:all .3s;fill:#666}.container svg:hover{transform:scale(1.1)}.container input:checked~svg{fill:#f5f3c2}.starButton{position:fixed;background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.animated-button{z-index:10000;position:absolute;display:flex;align-items:center;gap:4px;padding:6px 25px;border:4px solid;border-color:transparent;font-size:14px;background-color:inherit;border-radius:100px;font-weight:600;color:#fff;box-shadow:0 0 0 2px #fff;cursor:pointer;overflow:hidden;transition:all .6s cubic-bezier(.23,1,.32,1)}.animated-button svg{position:absolute;width:24px;fill:#fff;z-index:9;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .arr-1{right:16px}.animated-button .arr-2{left:-25%}.animated-button .circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background-color:#fff;border-radius:50%;opacity:0;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .text{position:relative;z-index:1;transform:translate(-12px);transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button:hover{box-shadow:0 0 0 12px transparent;color:#212121;border-radius:12px}.animated-button:hover .arr-1{right:-25%}.animated-button:hover .arr-2{left:16px}.animated-button:hover .text{transform:translate(12px)}.animated-button:hover svg{fill:#212121}.animated-button:active{scale:.95;box-shadow:0 0 0 4px #fff}.animated-button:hover .circle{width:220px;height:220px;opacity:1}.thing{z-index:1;left:0}.container1{position:fixed;z-index:1005}.tab-manager-container{border:2px solid #2b2b2b;padding:2px;border-radius:5px;margin:2px auto;max-width:100%;position:fixed;top:0;left:450px;z-index:100;background-color:#1e1e1e;box-shadow:0 2px 4px #0000001a}.tabs-bar{display:flex;flex-wrap:wrap;align-items:center;padding:8px;background-color:#13152c;color:#13152c;box-shadow:0 0 10px #0003}.tab-content{padding-top:0;overflow-y:auto;max-height:500px;background-color:#34495e;color:#fff}.tab{flex:1 1 auto;text-align:center;cursor:pointer;padding:.1rem 0;color:#fff;transition:all .15s ease-in-out;border-radius:.5rem;background-color:#34495e;margin-right:5px;display:flex;justify-content:space-evenly;align-items:center}.delete-tab{background-color:#e74c3c;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;transition:opacity .3s ease}.delete-tab:hover{opacity:.8}.tab:hover,.tab.active{background-color:#fff;color:#333;font-weight:600}.button{background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.button:hover{background-color:#2980b9}.input{border:1px solid #ccc;border-radius:4px;padding:8px;width:100%}.bin-button{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background-color:#13152c;cursor:pointer;border:2px solid #34495e;transition-duration:.3s;position:relative;overflow:hidden}.bin-bottom{width:12px;z-index:2}.bin-top{width:12px;transform-origin:right;transition-duration:.3s;z-index:2}.bin-button:hover .bin-top{transform:rotate(45deg)}.bin-button:hover{background-color:red}.bin-button:active{transform:scale(.9)}.garbage{position:absolute;width:10px;height:auto;z-index:1;opacity:0;transition:all .3s}.bin-button:hover .garbage{animation:throw .4s linear}@keyframes throw{0%{transform:translate(-400%,-700%);opacity:0}to{transform:translate(0);opacity:1}}.input-group{position:relative}.input1{border:solid 1.5px #9e9e9e;border-radius:1rem;background:none;padding:1rem;font-size:1rem;color:#f5f5f5;transition:border .15s cubic-bezier(.4,0,.2,1)}.user-label{position:absolute;left:15px;color:#e8e8e8;pointer-events:none;transform:translateY(1rem);transition:.15s cubic-bezier(.4,0,.2,1)}.input1:focus{outline:none;border:1.5px solid #1a73e8}.input1:focus~label{transform:translateY(-50%) scale(.8);background-color:#212121;padding:0 .2em;color:#2196f3}.add-tab-button{background:#f5f3c2;border:none;font-size:10px;cursor:pointer}.tabs-bar{display:flex;justify-content:space-between}.input-group{display:none}.input-group.show{display:block}.promptAddButton{align-self:flex-end}.enter-button{align-items:center;justify-content:center;padding:4px 12px;gap:25px;font-size:.7em;letter-spacing:2px;color:#fff;cursor:pointer;background:#13152c;position:relative;border-radius:8px;border:1px solid rgb(65,65,65);transition-duration:.3s}.arrow{height:10px}.enter-button:hover{transition-duration:.3s;box-shadow:0 0 2px #b9b9b9,0 0 10px #616161}.enter-button:active{transform:scale(.95)}.asdasd{display:inline-flex}.search-results{background:#13152c;overflow-y:auto;max-height:400px}.a12345,.search-result-item{display:flex}.search-result-item h4{margin:0}.search-result-item p{margin:5px 0}.more-button{padding:inherit;background:inherit;border:1px solid rgb(65,65,65)}.tags-container{display:flex;flex-wrap:wrap;gap:5px;background-color:#2c2f33;padding:5px;border-radius:4px;font-size:.7rem;z-index:2000;position:fixed;max-width:400px;overflow:visible}.tag-item.dragging{opacity:.5}::-webkit-scrollbar{display:none}.tag-item-container{position:relative}.tag-item{display:flex;align-items:center;background-color:#3b3e43;border-radius:8px;padding:1px;position:relative}.tag-content{margin-right:5px;outline:none;background-color:transparent;border:none;color:#fff;max-width:100px;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}.edit-tag{display:inline-flex;justify-content:center;align-items:center}.tag-content:focus{border-bottom:1px solid #7289da}.edit-tag,.delete-tag{margin:0 5px;cursor:pointer;padding:2px 4px;font-size:.5rem;width:25px;height:25px;display:flex;justify-content:center;align-items:center}.delete-tag{background:#cd5c5c}.tag-buttons{display:flex;justify-content:center;position:absolute;top:-24px;left:50%;transform:translate(-50%);visibility:hidden;opacity:0;transition:opacity .2s linear}.tag-item-container:hover .tag-buttons,.tag-buttons:hover{visibility:visible;opacity:1}.toggle-editor-btn{position:fixed;top:50%;left:0;transform:translateY(-50%);background-color:#7289da;color:#fff;border:none;cursor:pointer;padding:10px;border-top-right-radius:5px;border-bottom-right-radius:5px;font-size:1rem;z-index:1006}.tags-container.hidden{display:none}.tags-container.visible{display:flex}:root{font-family:Inter,Avenir,Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:400;color:#ffffffde;background-color:#242424;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%}a{font-weight:500;color:#646cff;text-decoration:inherit}a:hover{color:#535bf2}body{margin:0;display:flex;place-items:center;min-width:320px;min-height:100vh}h1{font-size:3.2em;line-height:1.1}button{border-radius:8px;border:1px solid transparent;padding:.6em 1.2em;font-size:1em;font-weight:500;font-family:inherit;background-color:#1a1a1a;cursor:pointer;transition:border-color .25s}button:hover{border-color:#646cff}button:focus,button:focus-visible{outline:4px auto -webkit-focus-ring-color}@media (prefers-color-scheme: light){:root{color:#213547;background-color:#fff}a:hover{color:#747bff}button{background-color:#f9f9f9}} ");
 
 (function (require$$0, require$$0$1) {
   'use strict';
@@ -54,30 +54,26 @@
     client.createRoot = m.createRoot;
     client.hydrateRoot = m.hydrateRoot;
   }
-  function PromptHistory({ tab, setTabs, onPromptsUpdate }) {
+  function PromptHistory({ key, activeTab, setTabs, onPromptsUpdate }) {
     const [prompts, setPrompts] = require$$0.useState(() => {
-      const saved = localStorage.getItem(`promptsHistory_${tab.id}`);
+      const saved = localStorage.getItem(`promptsHistory_${activeTab.id}`);
       const parsed = saved ? JSON.parse(saved) : [];
       return Array.isArray(parsed) ? parsed : [];
     });
     const [newPrompt, setNewPrompt] = require$$0.useState("");
     const [newName, setNewName] = require$$0.useState("");
-    require$$0.useEffect(() => {
-      localStorage.setItem(`promptsHistory_${tab.id}`, JSON.stringify(prompts));
-    }, [prompts, tab.id]);
     const addPrompt = () => {
       if (!newPrompt.trim())
         return;
       const newEntry = { name: newName.trim() || `Prompt ${prompts.length + 1}`, prompt: newPrompt };
       setTabs((tabs) => {
         const updatedTabs = tabs.map((t) => {
-          if (t.id === tab.id) {
+          if (t.id === activeTab.id) {
             const updatedPrompts = [...t.prompts, newEntry];
             return { ...t, prompts: updatedPrompts };
           }
           return t;
         });
-        localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
         return updatedTabs;
       });
       setNewPrompt("");
@@ -88,15 +84,13 @@
     }, [prompts]);
     const deletePrompt = (index) => {
       setTabs((tabs) => {
-        const updatedTabs = tabs.map((t) => {
-          if (t.id === tab.id) {
+        return tabs.map((t) => {
+          if (t.id === activeTab.id) {
             const updatedPrompts = t.prompts.filter((_, i) => i !== index);
             return { ...t, prompts: updatedPrompts };
           }
           return t;
         });
-        localStorage.setItem(`tabs`, JSON.stringify(updatedTabs));
-        return updatedTabs;
       });
     };
     const addToTextarea = (promptText) => {
@@ -117,26 +111,35 @@
     const updatePromptContent = (e, index) => {
       const updatedPromptText = e.target.innerText;
       setTabs((tabs) => {
-        return tabs.map((tab2) => {
-          if (tab2.id === tab2.id) {
-            const updatedPrompts = [...tab2.prompts];
+        return tabs.map((tab) => {
+          console.log("现在扫到tab：");
+          console.log(tab.id);
+          console.log("现在的id是");
+          console.log(key);
+          if (tab.id === activeTab.id) {
+            const updatedPrompts = [...tab.prompts];
             updatedPrompts[index] = { ...updatedPrompts[index], prompt: updatedPromptText };
-            return { ...tab2, prompts: updatedPrompts };
+            return { ...tab, prompts: updatedPrompts };
           }
-          return tab2;
+          return tab;
         });
       });
     };
     const updatePromptName = (e, index) => {
       const updatedName = e.target.innerText;
       setTabs((tabs) => {
-        return tabs.map((tab2) => {
-          if (tab2.id === tab2.id) {
-            const updatedPrompts = [...tab2.prompts];
+        return tabs.map((tab) => {
+          console.log("现在扫到tab：");
+          console.log(tab.id);
+          console.log("现在的id是");
+          console.log(key);
+          if (tab.id === activeTab.id) {
+            const updatedPrompts = [...tab.prompts];
             updatedPrompts[index] = { ...updatedPrompts[index], name: updatedName };
-            return { ...tab2, prompts: updatedPrompts };
+            console.log(updatedPrompts);
+            return { ...tab, prompts: updatedPrompts };
           }
-          return tab2;
+          return tab;
         });
       });
     };
@@ -145,7 +148,7 @@
       backgroundColor: "#13152c",
       color: "#FFF"
     }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: tab.prompts.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: activeTab.prompts.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         item && item.name && /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
           {
@@ -439,6 +442,7 @@
       setTabs(updatedTabs);
       localStorage.setItem("tabs", JSON.stringify(updatedTabs));
     };
+    const activeTab = tabs.find((tab) => tab.id === activeTabId);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "tab-manager-container", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "search-results", children: searchResults.map((result, index) => {
         const key = `${result.name}:${index}`;
@@ -561,7 +565,156 @@
           /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: addTab, className: "button", children: "Add Tab" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "tab-content", children: tabs.filter((tab) => tab.id === activeTabId).map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(PromptHistory, { tab, setTabs, onPromptsUpdate: handlePromptsUpdate }, tab.id)) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "tab-content", children: activeTab ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        PromptHistory,
+        {
+          activeTab,
+          setTabs,
+          onPromptsUpdate: handlePromptsUpdate
+        },
+        activeTab.id
+      ) : null })
+    ] });
+  }
+  function TextAreaItemsEditor() {
+    const [items, setItems] = require$$0.useState([]);
+    const [isEditorVisible, setIsEditorVisible] = require$$0.useState(false);
+    document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
+    const [draggedItemIndex, setDraggedItemIndex] = require$$0.useState(null);
+    const [dragging, setDragging] = require$$0.useState(false);
+    const handleDragStart = (e, index) => {
+      setDraggedItemIndex(index);
+      setDragging(true);
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", "");
+      e.currentTarget.classList.add("dragging");
+    };
+    const handleDragOver = (e, index) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    };
+    const handleDragEnd = (e) => {
+      setDragging(false);
+      e.currentTarget.classList.remove("dragging");
+    };
+    const handleDrop = (e, targetIndex) => {
+      e.preventDefault();
+      if (draggedItemIndex === null || draggedItemIndex === targetIndex)
+        return;
+      const newItems = [...items];
+      const [item] = newItems.splice(draggedItemIndex, 1);
+      const newIndex = draggedItemIndex < targetIndex ? targetIndex - 1 : targetIndex;
+      newItems.splice(newIndex, 0, item);
+      setItems(newItems);
+      updateTextArea(newItems);
+      setDraggedItemIndex(null);
+    };
+    require$$0.useEffect(() => {
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.addedNodes.length) {
+            const textArea2 = document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
+            if (textArea2) {
+              setItems(splitContent(textArea2.value));
+              observer.disconnect();
+              const handleInput = () => {
+                setItems(splitContent(textArea2.value));
+              };
+              textArea2.addEventListener("input", handleInput);
+              return () => {
+                textArea2.removeEventListener("input", handleInput);
+              };
+            }
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }, []);
+    const splitContent = (content) => {
+      const pattern = /{{(.*?)}}|([^,]+)/g;
+      let match;
+      let initialItems = [];
+      while ((match = pattern.exec(content)) !== null) {
+        initialItems.push(match[1] ? `{{${match[1]}}}` : match[0].trim());
+      }
+      return initialItems;
+    };
+    const updateTextArea = (newItems) => {
+      const textArea2 = document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
+      if (textArea2) {
+        textArea2.value = newItems.join(", ");
+      }
+    };
+    const handleItemUpdate = (index, newItem) => {
+      const newItems = [...items];
+      newItems[index] = newItem;
+      setItems(newItems);
+      updateTextArea(newItems);
+    };
+    const handleItemDelete = (index) => {
+      const newItems = items.filter((_, i) => i !== index);
+      setItems(newItems);
+      updateTextArea(newItems);
+    };
+    const handleAddBraces = (index, openingBrace, closingBrace) => {
+      const newItems = [...items];
+      newItems[index] = openingBrace + newItems[index] + closingBrace;
+      setItems(newItems);
+      updateTextArea(newItems);
+    };
+    const handleRemoveBraces = (index) => {
+      let newItem = items[index];
+      if (newItem.startsWith("{") && newItem.endsWith("}")) {
+        newItem = newItem.slice(1, -1);
+      } else if (newItem.startsWith("[") && newItem.endsWith("]")) {
+        newItem = newItem.slice(1, -1);
+      }
+      const newItems = [...items];
+      newItems[index] = newItem;
+      setItems(newItems);
+      updateTextArea(newItems);
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          className: "toggle-editor-btn",
+          onClick: () => setIsEditorVisible(!isEditorVisible),
+          children: isEditorVisible ? "<" : ">"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `tags-container ${isEditorVisible ? "visible" : "hidden"}`, children: items.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "tag-item-container",
+          draggable: "true",
+          onDragStart: (e) => handleDragStart(e, index),
+          onDragOver: (e) => handleDragOver(e),
+          onDragEnd: handleDragEnd,
+          onDrop: (e) => handleDrop(e, index),
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "tag-buttons", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "edit-tag", onClick: () => handleAddBraces(index, "{", "}"), children: "丄" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "edit-tag", onClick: () => handleAddBraces(index, "[", "]"), children: "丅" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "edit-tag", onClick: () => handleRemoveBraces(index), children: "一" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "tag-item", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  contentEditable: true,
+                  className: "tag-content",
+                  onBlur: (e) => handleItemUpdate(index, e.target.textContent),
+                  dangerouslySetInnerHTML: { __html: item }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "delete-tag", onClick: () => handleItemDelete(index), children: "x" })
+            ] })
+          ]
+        },
+        index
+      )) })
     ] });
   }
   function SideDrawer({ triggerSelector }) {
@@ -649,7 +802,6 @@
     const setTriggerPosition = require$$0.useCallback(() => {
       const triggerElement = document.querySelector(triggerSelector);
       if (triggerElement && triggerRef.current) {
-        console.log("triggerElement？？？？？");
         const { right, top, height } = triggerElement.getBoundingClientRect();
         triggerRef.current.style.top = `${top}px`;
         triggerRef.current.style.height = `${height}px`;
@@ -844,7 +996,8 @@
           searchResults,
           setSearchResults
         }
-      ) })
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TextAreaItemsEditor, {})
     ] });
   }
   function App() {

@@ -244,6 +244,7 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
         localStorage.setItem('tabs', JSON.stringify(updatedTabs)); // Persist the changes
     };
 
+    const activeTab = tabs.find(tab => tab.id === activeTabId);
 
     return (
         <div className="tab-manager-container">
@@ -336,9 +337,14 @@ function TabManager({tabs, setTabs, searchResults, setSearchResults, onActiveTab
 
             </div>
             <div className="tab-content">
-                {tabs.filter(tab => tab.id === activeTabId).map(tab => (
-                    <PromptHistory key={tab.id} tab={tab} setTabs={setTabs} onPromptsUpdate={handlePromptsUpdate}/>
-                ))}
+                {activeTab ? (
+                    <PromptHistory
+                        key={activeTab.id}
+                        activeTab={activeTab}
+                        setTabs={setTabs}
+                        onPromptsUpdate={handlePromptsUpdate}
+                    />
+                ) : null}
             </div>
         </div>
     );

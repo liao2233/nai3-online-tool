@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import '/src/sideDrawer.css';
 import TabManager from "./TabManager.jsx";
+import TextAreaItemsEditor from "./TextAreaItemsEditor.jsx";
 
 function SideDrawer({triggerSelector}) {
     const [isVisible, setIsVisible] = useState(true);
@@ -117,7 +118,7 @@ function SideDrawer({triggerSelector}) {
         const triggerElement = document.querySelector(triggerSelector);
         // const triggerElement1 = document.querySelector('.sc-b22b5055-22.ktRRzG');
         if (triggerElement && triggerRef.current) {
-            console.log('triggerElement？？？？？');
+            // console.log('triggerElement？？？？？');
             const {right, top, height} = triggerElement.getBoundingClientRect();
             triggerRef.current.style.top = `${top}px`;
             triggerRef.current.style.height = `${height}px`;
@@ -204,6 +205,7 @@ function SideDrawer({triggerSelector}) {
             console.warn('Invalid promptText provided to addToHistory');
             return; // 提早返回，不执行后续操作
         }
+        console.log(tabs);
         setTabs(tabs => tabs.map(tab => {
             // 检查是否是“历史”标签页
             if (tab.id === 'history') {
@@ -231,17 +233,37 @@ function SideDrawer({triggerSelector}) {
     };
 
     useEffect(() => {
-        const button = document.querySelector('.sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl'); // 使用正确的选择器来选中按钮
-
-        console.log(button);
-        if (button) {
-            button.addEventListener('click', handleButtonClick);
-        }
+        // 创建一个MutationObserver实例来监听DOM变更
+        const observer = new MutationObserver(mutations => {
+            for (const mutation of mutations) {
+                // 检查是否有新的子节点被添加
+                if (mutation.addedNodes.length) {
+                    const button = document.querySelector('.sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl');
+                    if (button) {
+                        button.addEventListener('click', handleButtonClick);
+                        // 成功添加事件监听器后，断开observer
+                        observer.disconnect();
+                        break;
+                    }
+                }
+            }
+        });
+        // 配置observer监视的内容：子节点的变化
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+        // 组件卸载时的清理函数
         return () => {
+            // 断开observer
+            observer.disconnect();
+            // 移除按钮的事件监听器，防止内存泄露
+            const button = document.querySelector('.sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl');
             if (button) {
                 button.removeEventListener('click', handleButtonClick);
             }
         };
+
     }, []); // 确保依赖项为空数组，这样效果只在组件挂载和卸载时运行
 
     useEffect(() => {
@@ -273,7 +295,7 @@ function SideDrawer({triggerSelector}) {
     return (
         <div className="thing">
             <button className="animated-button" onClick={toggleDrawer}
-                    style={{top: `${buttonPosition.top}px`, left: `${buttonPosition.left}px`}}>
+                    style={{top: '650px', left: `0px`}}>
                 <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"/>
@@ -286,15 +308,15 @@ function SideDrawer({triggerSelector}) {
                 </svg>
             </button>
             <label className="container"
-                   style={{top: `${buttonPosition.top - 5}px`, left: `${buttonPosition.left + 140}px`}}>
+                   style={{top: '645px', left: `145px`}}>
                 <input type="checkbox" onClick={handleFavoriteClick} readOnly checked={isFavorited}/>
                 <svg height="24px" id="Layer_1" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path d="M9.362,9.158c0,0-3.16,0.35-5.268,0.584c-0.19,0.023-0.358,0.15-0.421,0.343s0,0.394,0.14,0.521    c1.566,1.429,3.919,3.569,3.919,3.569c-0.002,0-0.646,3.113-1.074,5.19c-0.036,0.188,0.032,0.387,0.196,0.506    c0.163,0.119,0.373,0.121,0.538,0.028c1.844-1.048,4.606-2.624,4.606-2.624s2.763,1.576,4.604,2.625    c0.168,0.092,0.378,0.09,0.541-0.029c0.164-0.119,0.232-0.318,0.195-0.505c-0.428-2.078-1.071-5.191-1.071-5.191    s2.353-2.14,3.919-3.566c0.14-0.131,0.202-0.332,0.14-0.524s-0.23-0.319-0.42-0.341c-2.108-0.236-5.269-0.586-5.269-0.586    s-1.31-2.898-2.183-4.83c-0.082-0.173-0.254-0.294-0.456-0.294s-0.375,0.122-0.453,0.294C10.671,6.26,9.362,9.158,9.362,9.158z"/></g></g></svg>
             </label>
             <label className="container1"
-                   style={{top: `${buttonPosition.top + 10}px`, left: `${buttonPosition.left + 200}px`}}>
-                <button onClick={addPromptToActiveTab}>
-                    =>
+                   style={{top: '650px', left: `215px`}}>
+                <button className="container1" onClick={addPromptToActiveTab}>
+                    Add to Current->
                 </button>
             </label>
 
@@ -303,6 +325,7 @@ function SideDrawer({triggerSelector}) {
                             addPromptToFavorites={addPromptToFavorites} searchResults={searchResults}
                             setSearchResults={setSearchResults}/>
             </div>
+            <TextAreaItemsEditor/>
         </div>
     );
 }

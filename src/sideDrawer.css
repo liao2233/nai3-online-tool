@@ -158,4 +158,6 @@
 .container1 {
     position: fixed;
     z-index: 1005;
+    background: transparent;
+    border: solid white;
 }
