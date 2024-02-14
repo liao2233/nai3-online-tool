@@ -7,7 +7,7 @@
     max-width: 100%;
     position: fixed;
     top: 0;
-    left: 450px;
+    left: 30%;
     z-index: 100;
     background-color: #1e1e1e; /* Dark background for the container */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

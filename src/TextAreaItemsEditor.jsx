@@ -66,15 +66,8 @@ function TextAreaItemsEditor() {
         observer.observe(document.body, {childList: true, subtree: true});
         // 分割文本内容的函数
         const splitContent = (content) => {
-            const pattern = /{(.*?)}|([^,]+)/g;
-            let match;
-            let initialItems = [];
-
-            while ((match = pattern.exec(content)) !== null) {
-                initialItems.push(match[1] ? `{${match[1]}}` : match[0].trim());
-            }
-
-            return initialItems;
+            // 使用逗号分割字符串，并移除结果数组中的空字符串
+            return content.split(',').map(item => item.trim()).filter(item => item !== '');
         };
         // 清理函数
         return () => observer.disconnect();

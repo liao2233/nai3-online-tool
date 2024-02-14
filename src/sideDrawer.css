@@ -21,6 +21,8 @@
 }
 
 .container {
+    top:81%;
+    left:7%;
     position: fixed;
     z-index: 10003;
     display: block;
@@ -60,9 +62,8 @@
 
 .animated-button {
     z-index: 10000;
-    /*left: 100px;*/
-    /*top:-20px;*/
-    position: absolute; /* 或 fixed，取决于需要 */
+top:81%;
+    position: fixed; /* 或 fixed，取决于需要 */
     /*transition: top 0.3s, left 0.3s; !* 平滑过渡效果 *!*/
     display: flex;
     align-items: center;
@@ -156,6 +157,8 @@
 }
 
 .container1 {
+    top:81%;;
+    left:10%;
     position: fixed;
     z-index: 1005;
     background: transparent;

@@ -8,9 +8,10 @@
     font-size: 0.7rem; /* 减小字体大小 */
     z-index: 2000;
     position: fixed;
-    max-width: 400px;
+    max-width: 35%;
     /*overflow-y: auto;*/
     overflow: visible;
+    top:0;
 }
 .tag-item.dragging {
     opacity: 0.5;
@@ -35,6 +36,7 @@
 }
 
 .tag-content {
+
     margin-right: 5px; /* 调整间隙 */
     /*padding: 2px; !* 减小内边距 *!*/
     outline: none;
@@ -99,7 +101,7 @@
 /* 显示/隐藏按钮样式 */
 .toggle-editor-btn {
     position: fixed;
-    top: 50%; /* 页面垂直中间 */
+    top: 62%; /* 页面垂直中间 */
     left: 0; /* 页面最左边 */
     transform: translateY(-50%); /* 确保按钮垂直居中 */
     background-color: #7289da;
