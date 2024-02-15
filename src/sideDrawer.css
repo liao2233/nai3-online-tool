@@ -1,6 +1,6 @@
 .side-drawer {
-    position: fixed;
-    width: 90%; /* 或你希望的宽度 */
+    position: absolute;
+    /*width: 90%; !* 或你希望的宽度 *!*/
     background-color: #333; /* 侧边栏背景颜色 */
     transition: transform 1s ease; /* 平滑过渡效果 */
     z-index: 100; /* 确保侧边栏位于其他内容上方 */
@@ -163,4 +163,23 @@ top:81%;
     z-index: 1005;
     background: transparent;
     border: solid white;
+}
+.container2 {
+    top:75%;
+    left:0;
+    position: fixed;
+    z-index: 1005;
+    background: transparent;
+    border: solid white;
+}
+.portbutton {
+    position: fixed;
+    background-color: #f5f3c2;
+    color: #13152c;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease;
 }

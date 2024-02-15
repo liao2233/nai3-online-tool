@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       NovelAi online Prompts Tool
 // @namespace  npm/vite-plugin-monkey
-// @version    0.9.0
+// @version    0.9.7
 // @author     ChatGPT4
 // @icon       https://vitejs.dev/logo.svg
 // @match      https://novelai.net/image
@@ -11,8 +11,7 @@
 // @description NovelAi Prompts Management
 // @license    MIT
 // ==/UserScript==
-
-(o=>{if(typeof GM_addStyle=="function"){GM_addStyle(o);return}const t=document.createElement("style");t.textContent=o,document.head.append(t)})(" #root{max-width:1280px;margin:0 auto;padding:2rem;text-align:center}.logo{height:6em;padding:1.5em;will-change:filter}.logo:hover{filter:drop-shadow(0 0 2em #646cffaa)}.logo.react:hover{filter:drop-shadow(0 0 2em #61dafbaa)}@keyframes logo-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@media (prefers-reduced-motion: no-preference){a:nth-of-type(2) .logo{animation:logo-spin infinite 20s linear}}.card{padding:2em}.read-the-docs{color:#888}.side-drawer{position:fixed;width:90%;background-color:#333;transition:transform 1s ease;z-index:100;transform:translate(-100%);top:5%}.side-drawer.visible{transform:translate(0)}.container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.container{position:fixed;z-index:10003;display:block;cursor:pointer;-webkit-user-select:none;user-select:none}.container svg{position:relative;top:0;left:0;height:50px;width:50px;transition:all .3s;fill:#666}.container svg:hover{transform:scale(1.1)}.container input:checked~svg{fill:#f5f3c2}.starButton{position:fixed;background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.animated-button{z-index:10000;position:absolute;display:flex;align-items:center;gap:4px;padding:6px 25px;border:4px solid;border-color:transparent;font-size:14px;background-color:inherit;border-radius:100px;font-weight:600;color:#fff;box-shadow:0 0 0 2px #fff;cursor:pointer;overflow:hidden;transition:all .6s cubic-bezier(.23,1,.32,1)}.animated-button svg{position:absolute;width:24px;fill:#fff;z-index:9;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .arr-1{right:16px}.animated-button .arr-2{left:-25%}.animated-button .circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background-color:#fff;border-radius:50%;opacity:0;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .text{position:relative;z-index:1;transform:translate(-12px);transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button:hover{box-shadow:0 0 0 12px transparent;color:#212121;border-radius:12px}.animated-button:hover .arr-1{right:-25%}.animated-button:hover .arr-2{left:16px}.animated-button:hover .text{transform:translate(12px)}.animated-button:hover svg{fill:#212121}.animated-button:active{scale:.95;box-shadow:0 0 0 4px #fff}.animated-button:hover .circle{width:220px;height:220px;opacity:1}.thing{z-index:1;left:0}.container1{position:fixed;z-index:1005}.tab-manager-container{border:2px solid #2b2b2b;padding:2px;border-radius:5px;margin:2px auto;max-width:100%;position:fixed;top:0;left:450px;z-index:100;background-color:#1e1e1e;box-shadow:0 2px 4px #0000001a}.tabs-bar{display:flex;flex-wrap:wrap;align-items:center;padding:8px;background-color:#13152c;color:#13152c;box-shadow:0 0 10px #0003}.tab-content{padding-top:0;overflow-y:auto;max-height:500px;background-color:#34495e;color:#fff}.tab{flex:1 1 auto;text-align:center;cursor:pointer;padding:.1rem 0;color:#fff;transition:all .15s ease-in-out;border-radius:.5rem;background-color:#34495e;margin-right:5px;display:flex;justify-content:space-evenly;align-items:center}.delete-tab{background-color:#e74c3c;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;transition:opacity .3s ease}.delete-tab:hover{opacity:.8}.tab:hover,.tab.active{background-color:#fff;color:#333;font-weight:600}.button{background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.button:hover{background-color:#2980b9}.input{border:1px solid #ccc;border-radius:4px;padding:8px;width:100%}.bin-button{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background-color:#13152c;cursor:pointer;border:2px solid #34495e;transition-duration:.3s;position:relative;overflow:hidden}.bin-bottom{width:12px;z-index:2}.bin-top{width:12px;transform-origin:right;transition-duration:.3s;z-index:2}.bin-button:hover .bin-top{transform:rotate(45deg)}.bin-button:hover{background-color:red}.bin-button:active{transform:scale(.9)}.garbage{position:absolute;width:10px;height:auto;z-index:1;opacity:0;transition:all .3s}.bin-button:hover .garbage{animation:throw .4s linear}@keyframes throw{0%{transform:translate(-400%,-700%);opacity:0}to{transform:translate(0);opacity:1}}.input-group{position:relative}.input1{border:solid 1.5px #9e9e9e;border-radius:1rem;background:none;padding:1rem;font-size:1rem;color:#f5f5f5;transition:border .15s cubic-bezier(.4,0,.2,1)}.user-label{position:absolute;left:15px;color:#e8e8e8;pointer-events:none;transform:translateY(1rem);transition:.15s cubic-bezier(.4,0,.2,1)}.input1:focus{outline:none;border:1.5px solid #1a73e8}.input1:focus~label{transform:translateY(-50%) scale(.8);background-color:#212121;padding:0 .2em;color:#2196f3}.add-tab-button{background:#f5f3c2;border:none;font-size:10px;cursor:pointer}.tabs-bar{display:flex;justify-content:space-between}.input-group{display:none}.input-group.show{display:block}.promptAddButton{align-self:flex-end}.enter-button{align-items:center;justify-content:center;padding:4px 12px;gap:25px;font-size:.7em;letter-spacing:2px;color:#fff;cursor:pointer;background:#13152c;position:relative;border-radius:8px;border:1px solid rgb(65,65,65);transition-duration:.3s}.arrow{height:10px}.enter-button:hover{transition-duration:.3s;box-shadow:0 0 2px #b9b9b9,0 0 10px #616161}.enter-button:active{transform:scale(.95)}.asdasd{display:inline-flex}.search-results{background:#13152c;overflow-y:auto;max-height:400px}.a12345,.search-result-item{display:flex}.search-result-item h4{margin:0}.search-result-item p{margin:5px 0}.more-button{padding:inherit;background:inherit;border:1px solid rgb(65,65,65)}.tags-container{display:flex;flex-wrap:wrap;gap:5px;background-color:#2c2f33;padding:5px;border-radius:4px;font-size:.7rem;z-index:2000;position:fixed;max-width:400px;overflow:visible}.tag-item.dragging{opacity:.5}::-webkit-scrollbar{display:none}.tag-item-container{position:relative}.tag-item{display:flex;align-items:center;background-color:#3b3e43;border-radius:8px;padding:1px;position:relative}.tag-content{margin-right:5px;outline:none;background-color:transparent;border:none;color:#fff;max-width:100px;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}.edit-tag{display:inline-flex;justify-content:center;align-items:center}.tag-content:focus{border-bottom:1px solid #7289da}.edit-tag,.delete-tag{margin:0 5px;cursor:pointer;padding:2px 4px;font-size:.5rem;width:25px;height:25px;display:flex;justify-content:center;align-items:center}.delete-tag{background:#cd5c5c}.tag-buttons{display:flex;justify-content:center;position:absolute;top:-24px;left:50%;transform:translate(-50%);visibility:hidden;opacity:0;transition:opacity .2s linear}.tag-item-container:hover .tag-buttons,.tag-buttons:hover{visibility:visible;opacity:1}.toggle-editor-btn{position:fixed;top:50%;left:0;transform:translateY(-50%);background-color:#7289da;color:#fff;border:none;cursor:pointer;padding:10px;border-top-right-radius:5px;border-bottom-right-radius:5px;font-size:1rem;z-index:1006}.tags-container.hidden{display:none}.tags-container.visible{display:flex}:root{font-family:Inter,Avenir,Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:400;color:#ffffffde;background-color:#242424;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%}a{font-weight:500;color:#646cff;text-decoration:inherit}a:hover{color:#535bf2}body{margin:0;display:flex;place-items:center;min-width:320px;min-height:100vh}h1{font-size:3.2em;line-height:1.1}button{border-radius:8px;border:1px solid transparent;padding:.6em 1.2em;font-size:1em;font-weight:500;font-family:inherit;background-color:#1a1a1a;cursor:pointer;transition:border-color .25s}button:hover{border-color:#646cff}button:focus,button:focus-visible{outline:4px auto -webkit-focus-ring-color}@media (prefers-color-scheme: light){:root{color:#213547;background-color:#fff}a:hover{color:#747bff}button{background-color:#f9f9f9}} ");
+(o=>{if(typeof GM_addStyle=="function"){GM_addStyle(o);return}const t=document.createElement("style");t.textContent=o,document.head.append(t)})(" #root{max-width:1280px;margin:0 auto;padding:2rem;text-align:center}.logo{height:6em;padding:1.5em;will-change:filter}.logo:hover{filter:drop-shadow(0 0 2em #646cffaa)}.logo.react:hover{filter:drop-shadow(0 0 2em #61dafbaa)}@keyframes logo-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@media (prefers-reduced-motion: no-preference){a:nth-of-type(2) .logo{animation:logo-spin infinite 20s linear}}.card{padding:2em}.read-the-docs{color:#888}.side-drawer{position:absolute;background-color:#333;transition:transform 1s ease;z-index:100;transform:translate(-100%);top:5%}.side-drawer.visible{transform:translate(0)}.container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.container{top:81%;left:7%;position:fixed;z-index:10003;display:block;cursor:pointer;-webkit-user-select:none;user-select:none}.container svg{position:relative;top:0;left:0;height:50px;width:50px;transition:all .3s;fill:#666}.container svg:hover{transform:scale(1.1)}.container input:checked~svg{fill:#f5f3c2}.starButton{position:fixed;background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.animated-button{z-index:10000;top:81%;position:fixed;display:flex;align-items:center;gap:4px;padding:6px 25px;border:4px solid;border-color:transparent;font-size:14px;background-color:inherit;border-radius:100px;font-weight:600;color:#fff;box-shadow:0 0 0 2px #fff;cursor:pointer;overflow:hidden;transition:all .6s cubic-bezier(.23,1,.32,1)}.animated-button svg{position:absolute;width:24px;fill:#fff;z-index:9;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .arr-1{right:16px}.animated-button .arr-2{left:-25%}.animated-button .circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background-color:#fff;border-radius:50%;opacity:0;transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button .text{position:relative;z-index:1;transform:translate(-12px);transition:all .8s cubic-bezier(.23,1,.32,1)}.animated-button:hover{box-shadow:0 0 0 12px transparent;color:#212121;border-radius:12px}.animated-button:hover .arr-1{right:-25%}.animated-button:hover .arr-2{left:16px}.animated-button:hover .text{transform:translate(12px)}.animated-button:hover svg{fill:#212121}.animated-button:active{scale:.95;box-shadow:0 0 0 4px #fff}.animated-button:hover .circle{width:220px;height:220px;opacity:1}.thing{z-index:1;left:0}.container1{top:81%;left:10%;position:fixed;z-index:1005;background:transparent;border:solid white}.container2{top:75%;left:0;position:fixed;z-index:1005;background:transparent;border:solid white}.portbutton{position:fixed;background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.tab-manager-container{border:2px solid #2b2b2b;padding:2px;border-radius:5px;margin:2px auto;position:fixed;top:0;left:0%;z-index:100;background-color:#1e1e1e;box-shadow:0 2px 4px #0000001a;overflow:scroll;min-width:100%}.tabs-bar{display:flex;flex-wrap:wrap;align-items:normal;padding:8px;background-color:#13152c;color:#13152c;box-shadow:0 0 10px #0003}.tab-content{padding-top:0;overflow-y:scroll;max-height:900px;background-color:#34495e;color:#fff}.tab{flex:1 1 auto;text-align:center;cursor:pointer;padding:.1rem 0;color:#fff;transition:all .15s ease-in-out;border-radius:.5rem;background-color:#34495e;margin-right:5px;display:flex;justify-content:space-evenly;align-items:center}.delete-tab{background-color:#e74c3c;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;transition:opacity .3s ease}.delete-tab:hover{opacity:.8}.tab:hover,.tab.active{background-color:#fff;color:#333;font-weight:600}.button{background-color:#f5f3c2;color:#13152c;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;box-shadow:0 2px 4px #0003;transition:background-color .3s ease}.button:hover{background-color:#2980b9}.input{border:1px solid #ccc;border-radius:4px;padding:8px;width:100%}.bin-button{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background-color:#13152c;cursor:pointer;border:2px solid #34495e;transition-duration:.3s;position:relative;overflow:hidden}.bin-bottom{width:12px;z-index:2}.bin-top{width:12px;transform-origin:right;transition-duration:.3s;z-index:2}.bin-button:hover .bin-top{transform:rotate(45deg)}.bin-button:hover{background-color:red}.bin-button:active{transform:scale(.9)}.garbage{position:absolute;width:10px;height:auto;z-index:1;opacity:0;transition:all .3s}.bin-button:hover .garbage{animation:throw .4s linear}@keyframes throw{0%{transform:translate(-400%,-700%);opacity:0}to{transform:translate(0);opacity:1}}.input-group{position:relative}.input1{border:solid 1.5px #9e9e9e;border-radius:1rem;background:none;padding:1rem;font-size:1rem;color:#f5f5f5;transition:border .15s cubic-bezier(.4,0,.2,1)}.user-label{position:absolute;left:15px;color:#e8e8e8;pointer-events:none;transform:translateY(1rem);transition:.15s cubic-bezier(.4,0,.2,1)}.input1:focus{outline:none;border:1.5px solid #1a73e8}.input1:focus~label{transform:translateY(-50%) scale(.8);background-color:#212121;padding:0 .2em;color:#2196f3}.add-tab-button{background:#f5f3c2;border:none;font-size:10px;cursor:pointer}.tabs-bar{display:flex;justify-content:space-between}.input-group{display:none}.input-group.show{display:block}.promptAddButton{align-self:flex-end}.enter-button{align-items:center;justify-content:center;padding:4px 12px;gap:25px;font-size:.7em;letter-spacing:2px;color:#fff;cursor:pointer;background:#13152c;position:relative;border-radius:8px;border:1px solid rgb(65,65,65);transition-duration:.3s}.arrow{height:10px}.enter-button:hover{transition-duration:.3s;box-shadow:0 0 2px #b9b9b9,0 0 10px #616161}.enter-button:active{transform:scale(.95)}.asdasd{display:inline-flex}.search-results{background:#13152c;overflow-y:auto;max-height:400px}.a12345,.search-result-item{display:flex}.search-result-item h4{margin:0}.search-result-item p{margin:5px 0}.more-button{padding:inherit;background:inherit;border:1px solid rgb(65,65,65)}.tags-container{display:flex;flex-wrap:wrap;gap:5px;background-color:#0e0f21;padding:10px;border-radius:4px;font-size:.7rem;z-index:2000;overflow:visible;top:0}.tag-item.dragging{opacity:.5}::-webkit-scrollbar{display:none}.tag-item-container{position:relative}.tag-item{display:flex;align-items:center;background-color:#3b3e43;border-radius:8px;padding:1px;position:relative}.tag-content{margin-right:5px;outline:none;background-color:transparent;border:none;color:#fff;max-width:100px;white-space:normal;word-wrap:break-word;overflow-wrap:break-word}.edit-tag{display:inline-flex;justify-content:center;align-items:center}.tag-content:focus{border-bottom:1px solid #7289da}.edit-tag,.delete-tag{margin:0 5px;cursor:pointer;padding:2px 4px;font-size:.5rem;width:25px;height:25px;display:flex;justify-content:center;align-items:center}.delete-tag{background:#cd5c5c}.tag-buttons{display:flex;justify-content:center;position:absolute;top:-24px;left:50%;transform:translate(-50%);visibility:hidden;opacity:0;transition:opacity .2s linear}.tag-item-container:hover .tag-buttons,.tag-buttons:hover{visibility:visible;opacity:1}.toggle-editor-btn{position:fixed;top:62%;left:0;transform:translateY(-50%);background-color:#7289da;color:#fff;border:none;cursor:pointer;padding:10px;border-top-right-radius:5px;border-bottom-right-radius:5px;font-size:1rem;z-index:1006}.tags-container.hidden{display:none}.tags-container.visible{display:flex}:root{font-family:Inter,Avenir,Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:400;color:#ffffffde;background-color:#242424;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%}a{font-weight:500;color:#646cff;text-decoration:inherit}a:hover{color:#535bf2}body{margin:0;display:flex;place-items:center;min-width:320px;min-height:100vh}h1{font-size:3.2em;line-height:1.1}button{border-radius:8px;border:1px solid transparent;padding:.6em 1.2em;font-size:1em;font-weight:500;font-family:inherit;background-color:#1a1a1a;cursor:pointer;transition:border-color .25s}button:hover{border-color:#646cff}button:focus,button:focus-visible{outline:4px auto -webkit-focus-ring-color}@media (prefers-color-scheme: light){:root{color:#213547;background-color:#fff}a:hover{color:#747bff}button{background-color:#f9f9f9}} ");
 
 (function (require$$0, require$$0$1) {
   'use strict';
@@ -49,9 +48,10 @@
   }
   var jsxRuntimeExports = jsxRuntime.exports;
   var client = {};
+  var createRoot;
   var m = require$$0$1;
   {
-    client.createRoot = m.createRoot;
+    createRoot = client.createRoot = m.createRoot;
     client.hydrateRoot = m.hydrateRoot;
   }
   function PromptHistory({ key, activeTab, setTabs, onPromptsUpdate }) {
@@ -610,36 +610,27 @@
       setDraggedItemIndex(null);
     };
     require$$0.useEffect(() => {
-      const observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          if (mutation.addedNodes.length) {
-            const textArea2 = document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
-            if (textArea2) {
-              setItems(splitContent(textArea2.value));
-              observer.disconnect();
-              const handleInput = () => {
-                setItems(splitContent(textArea2.value));
-              };
-              textArea2.addEventListener("input", handleInput);
-              return () => {
-                textArea2.removeEventListener("input", handleInput);
-              };
-            }
-          }
+      const observer = new MutationObserver((mutations, obs) => {
+        const textArea2 = document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
+        if (textArea2) {
+          setItems(splitContent(textArea2.value));
+          const handleInput = () => {
+            setItems(splitContent(textArea2.value));
+          };
+          textArea2.addEventListener("input", handleInput);
+          console.log("开始监听input");
+          obs.disconnect();
+          return () => {
+            textArea2.removeEventListener("input", handleInput);
+          };
         }
       });
       observer.observe(document.body, { childList: true, subtree: true });
+      const splitContent = (content) => {
+        return content.split(",").map((item) => item.trim()).filter((item) => item !== "");
+      };
       return () => observer.disconnect();
     }, []);
-    const splitContent = (content) => {
-      const pattern = /{{(.*?)}}|([^,]+)/g;
-      let match;
-      let initialItems = [];
-      while ((match = pattern.exec(content)) !== null) {
-        initialItems.push(match[1] ? `{{${match[1]}}}` : match[0].trim());
-      }
-      return initialItems;
-    };
     const updateTextArea = (newItems) => {
       const textArea2 = document.querySelector("textarea.sc-5db1afd3-45.fnzOi");
       if (textArea2) {
@@ -720,7 +711,8 @@
   function SideDrawer({ triggerSelector }) {
     const [isVisible, setIsVisible] = require$$0.useState(true);
     const triggerRef = require$$0.useRef();
-    const [buttonPosition, setButtonPosition] = require$$0.useState({ top: 0, left: 0 });
+    const [buttonPosition, setButtonPosition] = require$$0.useState({ top: 0, left: 0, right: 0, width: 1e3 });
+    const [triggerExists, setTriggerExists] = require$$0.useState(false);
     const [tabs, setTabs] = require$$0.useState(() => {
       const savedTabs = localStorage.getItem("tabs");
       const parsedTabs = savedTabs ? JSON.parse(savedTabs) : null;
@@ -819,29 +811,52 @@
         });
       }
     }, [triggerSelector]);
-    require$$0.useEffect(() => {
-      const observer = new MutationObserver((mutationsList) => {
-        for (const mutation of mutationsList) {
-          if (mutation.type === "childList") {
-            setTriggerPosition();
-            const promptElement = document.querySelector(".sc-b22b5055-22.ktRRzG");
-            if (promptElement) {
-              const promptElementRect = promptElement.getBoundingClientRect();
-              setButtonPosition({
-                top: promptElementRect.top + window.scrollY - 10,
-                // 加上滚动偏移量
-                left: promptElementRect.right + 10
-                // 右侧偏移10px
-              });
-            }
-            observer.disconnect();
-            break;
-          }
+    function mountComponentAtTargetDiv() {
+      const observer = new MutationObserver((mutations, obs) => {
+        const targetDiv = document.querySelector(".sc-b22b5055-10.jwqfiN");
+        if (targetDiv) {
+          const mountPoint = document.createElement("div");
+          targetDiv.parentNode.insertBefore(mountPoint, targetDiv.nextSibling);
+          const root = createRoot(mountPoint);
+          root.render(/* @__PURE__ */ jsxRuntimeExports.jsx(TextAreaItemsEditor, {}));
+          console.log("mountComponentAtTargetDiv");
+          obs.disconnect();
         }
       });
-      observer.observe(document.body, { childList: true, subtree: true });
-      return () => observer.disconnect();
-    }, [setTriggerPosition, triggerSelector]);
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+    require$$0.useEffect(() => {
+      mountComponentAtTargetDiv();
+    }, []);
+    require$$0.useEffect(() => {
+      if (!triggerExists)
+        return;
+      const targetElement = document.querySelector(triggerSelector);
+      const targetElement1 = document.querySelector(".sc-56746855-0.PWOhS");
+      if (!targetElement || !targetElement1)
+        return;
+      const updatePosition = () => {
+        const rect = targetElement.getBoundingClientRect();
+        const rect1 = targetElement1.getBoundingClientRect();
+        setButtonPosition({ top: rect.top, left: rect.right, right: rect1.left });
+      };
+      const resizeObserver = new ResizeObserver((entries) => {
+        updatePosition();
+      });
+      resizeObserver.observe(targetElement);
+      const mutationObserver = new MutationObserver((mutations) => {
+        updatePosition();
+      });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+      updatePosition();
+      return () => {
+        resizeObserver.disconnect();
+        mutationObserver.disconnect();
+      };
+    }, [triggerExists, triggerSelector]);
     require$$0.useEffect(() => {
       setTriggerPosition();
       window.addEventListener("resize", setTriggerPosition);
@@ -855,8 +870,11 @@
             if (triggerElement) {
               setTriggerPosition();
               const targetElement = document.querySelector(".sc-b22b5055-0.kWaZHl");
+              const targetElement1 = document.querySelector(".sc-b22b5055-10.jwqfiN");
               if (targetElement) {
                 targetElement.style.zIndex = "1001";
+                targetElement1.style.visibility = "hidden";
+                targetElement1.style.maxHeight = "0";
               }
               observer.disconnect();
               break;
@@ -878,6 +896,7 @@
         console.warn("Invalid promptText provided to addToHistory");
         return;
       }
+      console.log(tabs);
       setTabs((tabs2) => tabs2.map((tab) => {
         if (tab.id === "history") {
           const isDuplicate = tab.prompts.some((prompt) => (prompt == null ? void 0 : prompt.prompt) === promptText);
@@ -898,12 +917,25 @@
       addToHistory(inputText);
     };
     require$$0.useEffect(() => {
-      const button = document.querySelector(".sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl");
-      console.log(button);
-      if (button) {
-        button.addEventListener("click", handleButtonClick);
-      }
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.addedNodes.length) {
+            const button = document.querySelector(".sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl");
+            if (button) {
+              button.addEventListener("click", handleButtonClick);
+              observer.disconnect();
+              break;
+            }
+          }
+        }
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
       return () => {
+        observer.disconnect();
+        const button = document.querySelector(".sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl");
         if (button) {
           button.removeEventListener("click", handleButtonClick);
         }
@@ -929,13 +961,76 @@
       return () => observer.disconnect();
     }, []);
     const [searchResults, setSearchResults] = require$$0.useState([]);
+    const exportTabs = () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tabs));
+      const downloadAnchorNode = document.createElement("a");
+      downloadAnchorNode.setAttribute("href", dataStr);
+      downloadAnchorNode.setAttribute("download", "tabs_backup.json");
+      document.body.appendChild(downloadAnchorNode);
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    };
+    const importTabs = (event) => {
+      if (event.target.files.length === 0) {
+        console.error("No file selected");
+        return;
+      }
+      const file = event.target.files[0];
+      if (!(file instanceof Blob)) {
+        console.error("Selected file is not a Blob or File");
+        return;
+      }
+      const fileReader = new FileReader();
+      fileReader.readAsText(file, "UTF-8");
+      fileReader.onload = (e) => {
+        const content = e.target.result;
+        try {
+          const parsedTabs = JSON.parse(content);
+          setTabs(parsedTabs);
+        } catch (error) {
+          console.error("Error parsing the file:", error);
+        }
+      };
+    };
+    require$$0.useEffect(() => {
+      const observer = new MutationObserver((mutationsList, observer2) => {
+        if (document.querySelector(triggerSelector)) {
+          setTriggerExists(true);
+          observer2.disconnect();
+        }
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+      if (document.querySelector(triggerSelector)) {
+        setTriggerExists(true);
+      }
+      return () => observer.disconnect();
+    }, [triggerSelector]);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "thing", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `side-drawer ${isVisible ? "visible" : ""}`, style: {
+        top: 0,
+        left: buttonPosition.left,
+        right: buttonPosition.right,
+        width: buttonPosition.right - buttonPosition.left,
+        minWidth: buttonPosition.right - buttonPosition.left
+      }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TabManager,
+        {
+          tabs,
+          setTabs,
+          onActiveTabChange: handleActiveTabChange,
+          addPromptToFavorites,
+          searchResults,
+          setSearchResults
+        }
+      ) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "button",
         {
           className: "animated-button",
           onClick: toggleDrawer,
-          style: { top: `${buttonPosition.top}px`, left: `${buttonPosition.left}px` },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 24 24", className: "arr-2", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "path",
@@ -958,7 +1053,6 @@
         "label",
         {
           className: "container",
-          style: { top: `${buttonPosition.top - 5}px`, left: `${buttonPosition.left + 140}px` },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", onClick: handleFavoriteClick, readOnly: true, checked: isFavorited }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -982,22 +1076,22 @@
         "label",
         {
           className: "container1",
-          style: { top: `${buttonPosition.top + 10}px`, left: `${buttonPosition.left + 200}px` },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: addPromptToActiveTab, children: "=>" })
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "container1", onClick: addPromptToActiveTab, children: "Add to Current->" })
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `side-drawer ${isVisible ? "visible" : ""}`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        TabManager,
-        {
-          tabs,
-          setTabs,
-          onActiveTabChange: handleActiveTabChange,
-          addPromptToFavorites,
-          searchResults,
-          setSearchResults
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(TextAreaItemsEditor, {})
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "container2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "portbutton", onClick: exportTabs, children: "Export" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "file", id: "fileInput", style: { display: "none" }, onChange: importTabs }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            className: "portbutton",
+            style: { left: "5%" },
+            onClick: () => document.getElementById("fileInput").click(),
+            children: "Import"
+          }
+        )
+      ] })
     ] });
   }
   function App() {

@@ -4,19 +4,21 @@
     padding: 2px;
     border-radius: 5px;
     margin: 2px auto;
-    max-width: 100%;
+    /*width: 70%;*/
     position: fixed;
     top: 0;
-    left: 30%;
+    left: 0%;
     z-index: 100;
     background-color: #1e1e1e; /* Dark background for the container */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: scroll;
+    min-width: 100%;
 }
 
 .tabs-bar {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: normal;
     padding: 8px;
     /*background-color: #2c3e50; !* Adjusted to match theme *!*/
     background-color: #13152c;
@@ -26,8 +28,8 @@
 
 .tab-content {
     padding-top: 0;
-    overflow-y: auto;
-    max-height: 500px;
+    overflow-y: scroll;
+    max-height: 900px;
     background-color: #34495e; /* Dark background for content */
     color: #ffffff; /* Light text for readability */
 }
