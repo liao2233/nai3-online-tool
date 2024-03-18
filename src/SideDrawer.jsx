@@ -335,28 +335,28 @@ function SideDrawer({triggerSelector}) {
 
     }, []); // 确保依赖项为空数组，这样效果只在组件挂载和卸载时运行
 
-    useEffect(() => {
-        const observer = new MutationObserver((mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'childList') {
-                    const button = document.querySelector('.sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl'); // 使用正确的选择器来选中按钮
-                    if (button) {
-                        // 设置按钮点击监听器
-                        button.addEventListener('click', handleButtonClick);
-                        observer.disconnect(); // 找到按钮后不再需要观察
-                        break;
-                    }
-                }
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        return () => observer.disconnect();
-    }, []); // 空依赖项数组，确保只运行一次
+    // useEffect(() => {
+    //     const observer = new MutationObserver((mutationsList, observer) => {
+    //         for (const mutation of mutationsList) {
+    //             if (mutation.type === 'childList') {
+    //                 const button = document.querySelector('.sc-d72450af-1.sc-b22b5055-20.kXFbYD.gRaRZl'); // 使用正确的选择器来选中按钮
+    //                 if (button) {
+    //                     // 设置按钮点击监听器
+    //                     button.addEventListener('click', handleButtonClick);
+    //                     observer.disconnect(); // 找到按钮后不再需要观察
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     });
+    //
+    //     observer.observe(document.body, {
+    //         childList: true,
+    //         subtree: true
+    //     });
+    //
+    //     return () => observer.disconnect();
+    // }, []); // 空依赖项数组，确保只运行一次
 
     //全局搜索模块
     const [searchResults, setSearchResults] = useState([]);
